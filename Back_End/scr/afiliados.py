@@ -24,7 +24,9 @@ def extrect_partidos(path):
 def data_result(result):
     #result.to_csv("0.csv", index=False)
 
-    eng =  create_engine('postgresql://aladdin:Cp1149rm3t7@genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com:5432/abu')
+    #eng = create_engine('postgresql://aladdin:Cp1149rm3t7@genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com:5432/abu')
+    eng = create_engine('postgresql://postgres:162606@localhost:5432/abu')
+    #print(eng)
     
     #conn_string = "host='genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com' dbname='abu' user='aladdin' password='Cp1149rm3t7'"
 
@@ -36,33 +38,33 @@ def data_result(result):
 
     # # conn.cursor will return a cursor object, you can use this cursor to perform queries
    # cursor = conn.cursor()
+    #result = pd.drop_duplicates(result, keep=False)
+    
+    result.to_sql('afiliados_stg', eng, if_exists='append', index=False)
+
+# def db_connect():
 
     
-    result.to_sql('afiliados', eng, if_exists='append', index=False, index_label='NOME_FILIADO')
 
-def db_connect():
+# #   engine = create_engine('postgresql://'+ user + ':' + password + '@' + host + '/' +dbname)
+#     #engine = create_engine('postgresql://aladdin:Cp1149rm3t7@18.228.120.133:5432/abu')
 
-    
-
-#   engine = create_engine('postgresql://'+ user + ':' + password + '@' + host + '/' +dbname)
-    #engine = create_engine('postgresql://aladdin:Cp1149rm3t7@18.228.120.133:5432/abu')
-
-   # engine = create_engine('postgresql://genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com[aladdin]:[Cp1149rm3t7]:]+'/'+os.environ[abu],echo=False)
+#    # engine = create_engine('postgresql://genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com[aladdin]:[Cp1149rm3t7]:]+'/'+os.environ[abu],echo=False)
 
 
-    conn_string = "host='genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com' dbname='abu' user='aladdin' password='Cp1149rm3t7'"
+#     conn_string = "host='genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com' dbname='abu' user='aladdin' password='Cp1149rm3t7'"
 
-    # # print the connection string we will use to connect
-    #print ("Connecting to database\n	->%s" % (conn_string))
+#     # # print the connection string we will use to connect
+#     #print ("Connecting to database\n	->%s" % (conn_string))
 
-    # # get a connection, if a connect cannot be made an exception will be raised here
-    conn = psycopg2.connect(conn_string)
+#     # # get a connection, if a connect cannot be made an exception will be raised here
+#     conn = psycopg2.connect(conn_string)
 
-    # # conn.cursor will return a cursor object, you can use this cursor to perform queries
-    cursor = conn.cursor()
+#     # # conn.cursor will return a cursor object, you can use this cursor to perform queries
+#     cursor = conn.cursor()
     
     
-    print ("Connected!\n")
+#     print ("Connected!\n")
 
     
 
