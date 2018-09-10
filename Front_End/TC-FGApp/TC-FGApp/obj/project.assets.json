@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\João\\Source\\Repos\\TC-FGApp\\TC-FGApp\\TC-FGApp.csproj",
+      "projectUniqueName": "C:\\Users\\João\\Documents\\GitHub\\FGApp\\Front_End\\TC-FGApp\\TC-FGApp\\TC-FGApp.csproj",
       "projectName": "TC-FGApp",
-      "projectPath": "C:\\Users\\João\\Source\\Repos\\TC-FGApp\\TC-FGApp\\TC-FGApp.csproj",
+      "projectPath": "C:\\Users\\João\\Documents\\GitHub\\FGApp\\Front_End\\TC-FGApp\\TC-FGApp\\TC-FGApp.csproj",
       "packagesPath": "C:\\Users\\João\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\João\\Source\\Repos\\TC-FGApp\\TC-FGApp\\obj\\",
+      "outputPath": "C:\\Users\\João\\Documents\\GitHub\\FGApp\\Front_End\\TC-FGApp\\TC-FGApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
