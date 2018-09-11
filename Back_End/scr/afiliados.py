@@ -40,7 +40,7 @@ def data_result(result):
    # cursor = conn.cursor()
     #result = pd.drop_duplicates(result, keep=False)
     
-    result.to_sql('afiliados_stg', eng, if_exists='append', index=False)
+    result.to_sql('afiliados', eng, if_exists='append', index=False)
 
 # def db_connect():
 
