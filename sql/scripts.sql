@@ -1,6 +1,7 @@
 INSERT INTO public.servidores(
 	"Id_SERVIDOR_PORTAL", "NOME", "CPF", "MATRICULA")
 	SELECT "Id_SERVIDOR_PORTAL", "NOME","CPF","MATRICULA" from servidores_stg
+	ON CONFLICT ("Id_SERVIDOR_PORTAL", "NOME", "CPF", "MATRICULA") DO NOTHING;
 	
 ;
 INSERT INTO sevidores_func(
@@ -23,7 +24,31 @@ SELECT 	a."SIGLA_FUNCAO",
 							b."MATRICULA" = a."MATRICULA" and
 							b."Id_SERVIDOR_PORTAL" = a."Id_SERVIDOR_PORTAL"
 							
-							
+;
+---
+SELECT b.fk_servidores, count(b.fk_servidores)
+FROM public.servidores_func b 
+	
+	GROUP BY b.fk_servidores HAVING COUNT(*) > 1
+	order by b.fk_servidores
+
+;
+
+INSERT INTO public.afiliados(
+	"NOME DO FILIADO", "NUMERO DA INSCRICAO", "SIGLA DO PARTIDO", "UF", "CODIGO DO MUNICIPIO", "NOME DO MUNICIPIO", "ZONA ELEITORAL", "SECAO ELEITORAL", "DATA DA FILIACAO", "SITUACAO DO REGISTRO", "DATA DA DESFILIACAO")
+	Select b."NOME DO FILIADO", 
+			b."NUMERO DA INSCRICAO", 
+			b."SIGLA DO PARTIDO", 
+			b."UF", 
+			b."CODIGO DO MUNICIPIO", 
+			b."NOME DO MUNICIPIO", 
+			b."ZONA ELEITORAL", 
+			b."SECAO ELEITORAL", 
+			b."DATA DA FILIACAO", 
+			b."SITUACAO DO REGISTRO", 
+			b."DATA DA DESFILIACAO" from afiliados_stg b where "SITUACAO DO REGISTRO" = 'CANCELADO' on conflict do nothing
+			
+---	
 							---
 							
 							

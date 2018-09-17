@@ -16,8 +16,8 @@ def extrect_partidos(path):
 
 def data_result(result):
 
-#   eng =  create_engine('postgresql://aladdin:Cp1149rm3t7@genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com:5432/abu')
-    eng = create_engine('postgresql://postgres:162606@localhost:5432/abu')
+    eng =  create_engine('postgresql://aladdin:Cp1149rm3t7@genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com:5432/abu')
+#   eng = create_engine('postgresql://postgres:162606@localhost:5432/abu')
     result.to_sql('servidores_func', eng, if_exists='replace', index=False,)
 
 
