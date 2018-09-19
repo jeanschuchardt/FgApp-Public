@@ -25,6 +25,11 @@ namespace TC_FGApp.Controllers
             return View();
         }
 
+        public IActionResult GeoGraph()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

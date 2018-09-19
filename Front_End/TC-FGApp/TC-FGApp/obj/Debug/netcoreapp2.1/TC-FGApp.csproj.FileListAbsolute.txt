@@ -61,3 +61,4 @@ C:\Users\João\Documents\GitHub\FGApp\Front_End\TC-FGApp\TC-FGApp\obj\Debug\netc
 C:\Users\João\Documents\GitHub\FGApp\Front_End\TC-FGApp\TC-FGApp\obj\Debug\netcoreapp2.1\TC-FGApp.dll
 C:\Users\João\Documents\GitHub\FGApp\Front_End\TC-FGApp\TC-FGApp\obj\Debug\netcoreapp2.1\TC-FGApp.pdb
 C:\Users\João\Documents\GitHub\FGApp\Front_End\TC-FGApp\TC-FGApp\obj\Debug\netcoreapp2.1\TC-FGApp.csproj.CopyComplete
+C:\Users\João\Documents\GitHub\FGApp\Front_End\TC-FGApp\TC-FGApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\GeoGraph.g.cshtml.cs
