@@ -12218,23 +12218,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\João\\.nuget\\packages\\": {},
+    "C:\\Users\\jeans\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\João\\Documents\\GitHub\\FGApp\\Front_End\\TC-FGApp\\TC-FGApp\\TC-FGApp.csproj",
+      "projectUniqueName": "D:\\Project\\FGApp\\Front_End\\TC-FGApp\\TC-FGApp\\TC-FGApp.csproj",
       "projectName": "TC-FGApp",
-      "projectPath": "C:\\Users\\João\\Documents\\GitHub\\FGApp\\Front_End\\TC-FGApp\\TC-FGApp\\TC-FGApp.csproj",
-      "packagesPath": "C:\\Users\\João\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\João\\Documents\\GitHub\\FGApp\\Front_End\\TC-FGApp\\TC-FGApp\\obj\\",
+      "projectPath": "D:\\Project\\FGApp\\Front_End\\TC-FGApp\\TC-FGApp\\TC-FGApp.csproj",
+      "packagesPath": "C:\\Users\\jeans\\.nuget\\packages\\",
+      "outputPath": "D:\\Project\\FGApp\\Front_End\\TC-FGApp\\TC-FGApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\João\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jeans\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
