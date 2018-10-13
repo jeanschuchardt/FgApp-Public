@@ -86,42 +86,63 @@ def unziper():
         except:
             print('not deleted '+ fileX)
 def extrect_partidos():
-    path = os.getcwd() + "//unzip//aplic//sead//lista_filiados//uf"
-    listFiles = glob.glob(path+'/*csv')
+    path = os.getcwd() + "//unzip"
+    listFiles = glob.glob(path+'/*Cadastro.csv')
     for file in listFiles:
         readProcess(file)
-        print(file)
+        #print(file)
         move(file)
 def readProcess(path):
     #encoding and read
-    try:
-        f=pd.read_csv(path, sep=',\s+', encoding ="ansi", delimiter=';',low_memory=False, skipinitialspace=True)
+    fileName = os.path.basename(path)
+    year = fileName[:4]
+    mounth = fileName[4:6]
+    #print(year)
+    #print(mounth)
 
-        #the name of colluns 
-        keep_col = ['NOME DO FILIADO','NUMERO DA INSCRICAO','SIGLA DO PARTIDO','UF','CODIGO DO MUNICIPIO','NOME DO MUNICIPIO','ZONA ELEITORAL','SECAO ELEITORAL','DATA DA FILIACAO','SITUACAO DO REGISTRO','DATA DA DESFILIACAO']
-        #keep_col = ['Id_SERVIDOR_PORTAL','NOME','CPF','MATRICULA','SIGLA_FUNCAO','NIVEL_FUNCAO','FUNCAO','UORG_EXERCICIO','DATA_INICIO_AFASTAMENTO','DATA_TERMINO_AFASTAMENTO','DATA_INGRESSO_CARGOFUNCAO','DATA_NOMEACAO_CARGOFUNCAO','DATA_INGRESSO_ORGAO','UF_EXERCICIO']
-        df = f[keep_col]
-        #df = df.dropna(subset=['SIGLA_FUNCAO'])
 
-        insert(df)
-    except:
-        print('error:')
+
+    try:    
+        chunksize = 10000
+        for df in pd.read_csv(path,encoding ="ansi", sep=',\s+', delimiter=';',low_memory=False, skipinitialspace=True,memory_map=True , chunksize=chunksize):
+            #process(chunk)
+            #f=pd.read_csv(path,encoding ="ansi", delimiter=';',low_memory=False, skipinitialspace=True,memory_map=True )
+            keep_col = ['Id_SERVIDOR_PORTAL','NOME','CPF','MATRICULA','SIGLA_FUNCAO','NIVEL_FUNCAO','FUNCAO','UORG_EXERCICIO','DATA_INICIO_AFASTAMENTO','DATA_TERMINO_AFASTAMENTO','DATA_INGRESSO_CARGOFUNCAO','DATA_NOMEACAO_CARGOFUNCAO','DATA_INGRESSO_ORGAO']
+            df = df[keep_col]
+            df.columns = df.columns = df.columns.str.replace(' ', '_')
+            df = df[df.SIGLA_FUNCAO != '-1']
+            
+            df.insert(len(df.columns),"ANO",year)
+            df.insert(len(df.columns),"MES",mounth)
+
+           # print(df)
+            insert(df)
+            #insert(f)
+    except Exception as e:
+        print('>>>>')
+        print('error:', e)
+        print('error:', path)
+        print('>>>>')
+        
 def insert(result):
     #result.to_csv("0.csv", index=False)
-
+    print('insert')
     #eng = create_engine('postgresql://aladdin:Cp1149rm3t7@genie.clbigxrmgqzl.sa-east-1.rds.amazonaws.com:5432/abu')
     eng = create_engine('postgresql://postgres:162606@localhost:5432/abu')
-      
-    result.to_sql('servidores_STG', eng, if_exists='append', index=False)
+    try:
+       result.to_sql('servidores_2STG', eng, if_exists='append', index=False)
+    except Exception as e:
+       print('error2:', e)
 def move(path):
     newpath = os.getcwd() + '/inserted'
     if not os.path.exists(newpath):
         os.mkdir(newpath)
 
     base=os.path.basename(path)
-    print(path)
-    print(newpath+'/'+base)
+    #print(path)
+    #print(newpath+'/'+base)
     shutil.move(path, newpath+'/'+base)
 
-manin()
+#manin()
+extrect_partidos()
 
