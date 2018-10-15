@@ -157,7 +157,7 @@ CREATE TABLE public."servidores_nome" (
 );
 
 
-CREATE TABLE ServidoresTMP AS
+CREATE TABLE ServidoresTMP AS 	
 SELECT  
 "Id_SERVIDOR_PORTAL", 
 "NOME", 
@@ -189,3 +189,92 @@ a."NUMERO_INSCRICAO", a."SIGLA_PARTIDO",  a."NOME_FILIADO", b."NOME", b."Id_SERV
 	inner join "servidores" b ON  a."NOME_FILIADO" = b."NOME"
 		
 	ORDER by a."NUMERO_INSCRICAO"
+	
+	
+	INSERT INTO public.afiliados(
+	"NOME_FILIADO", "NUMERO_INSCRICAO", "SIGLA_PARTIDO", "UF", "CODIGO_MUNICIPIO", "NOME_MUNICIPIO", "ZONA_ELEITORAL", "SECAO_ELEITORAL", "DATA_FILIACAO", "SITUACAO_REGISTRO", "DATA_DESFILIACAO")
+	SELECT
+	"NOME_DO_FILIADO", 
+	"NUMERO_DA_INSCRICAO", 
+	"SIGLA_DO_PARTIDO", 
+	"UF", 
+	"CODIGO_DO_MUNICIPIO",
+	"NOME_DO_MUNICIPIO", 
+	"ZONA_ELEITORAL",
+	"SECAO_ELEITORAL",
+	to_date("DATA_DA_FILIACAO",'DD/MM/YYYY') as "DATA_DA_FILIACAO",
+	"SITUACAO_DO_REGISTRO", 
+	to_date(to_char("DATA_DA_DESFILIACAO",'DD/MM/YYYY'), 'DD/MM/YYYY') as "DATA_DA_DESFILIACAO"
+	
+	FROM public."afiliados_2STG"
+	
+	on conflict do nothing;
+	
+	
+	
+	CREATE TABLE public.afiliados (
+    "NOME_FILIADO" text,
+    "NUMERO_INSCRICAO" bigint,
+    "SIGLA_PARTIDO" text,
+    "UF" text,
+    "CODIGO_MUNICIPIO" bigint,
+    "NOME_MUNICIPIO" text,
+    "ZONA_ELEITORAL" bigint,
+    "SECAO_ELEITORAL" bigint,
+    "DATA_FILIACAO" date,
+    "SITUACAO_REGISTRO" text,
+    "DATA_DESFILIACAO" date
+);
+
+ALTER TABLE public.afiliados
+    ADD PRIMARY KEY ("NUMERO_INSCRICAO");
+	
+	
+	
+	SELECT
+	"NOME_DO_FILIADO", 
+	"NUMERO_DA_INSCRICAO", 
+	"SIGLA_DO_PARTIDO", 
+	"UF", 
+	"CODIGO_DO_MUNICIPIO",
+	"NOME_DO_MUNICIPIO", 
+	"ZONA_ELEITORAL",
+	"SECAO_ELEITORAL",
+	to_date("DATA_DA_FILIACAO",'DD/MM/YYYY') as "DATA_DA_FILIACAO",
+	"SITUACAO_DO_REGISTRO", 
+	to_date("DATA_DA_DESFILIACAO", 'DD/MM/YYYY') as "DATA_DA_DESFILIACAO"
+	
+	FROM public."afiliados_2STG";
+	
+	
+	
+	INSERT INTO public.servidores("Id_SERVIDOR_PORTAL", "NOME", "CPF")
+	SELECT "Id_SERVIDOR_PORTAL", "NOME", "CPF"
+	FROM public."servidores_2STG"
+	on conflict do nothing;
+	
+		
+	SELECT count(*) FROM public."afiliados_2STG";
+	SELECT count(*) FROM public."servidores_2STG" where "ANO" ='2018';
+
+
+
+CREATE TABLE funcoes AS 	
+	select a.id,
+	b."MATRICULA",
+	b."SIGLA_FUNCAO",
+	b."NIVEL_FUNCAO", 
+	b."FUNCAO",
+	b."UORG_EXERCICIO",
+	b."DATA_INICIO_AFASTAMENTO",
+	b."DATA_TERMINO_AFASTAMENTO",
+	b."DATA_INGRESSO_CARGOFUNCAO", 
+	b."DATA_NOMEACAO_CARGOFUNCAO", 
+	b."DATA_INGRESSO_ORGAO", 
+	b."ANO", 
+	b."MES"
+	from servidores a
+	inner join "servidores_2STG" b ON  
+		a."NOME" = b."NOME" AND
+		a."CPF" =  b."CPF" and
+		a."Id_SERVIDOR_PORTAL" = b."Id_SERVIDOR_PORTAL"
