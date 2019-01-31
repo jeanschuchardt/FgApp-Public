@@ -151,3 +151,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+
+#
+.csv
+.doc
+.docx
+
