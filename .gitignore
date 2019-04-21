@@ -155,7 +155,10 @@ dmypy.json
 
 
 #
-.csv
-.doc
-.docx
-/db/data
+*.csv
+*.doc
+*.docx
+**/data/
+
+*.zip
+*.rar

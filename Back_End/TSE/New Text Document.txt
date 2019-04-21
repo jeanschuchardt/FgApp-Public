@@ -1,0 +1,8 @@
+You have to install "m-win32.whl" (32bit) file
+
+Download 32bit file from https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient
+if your file is in Downloads folder write the command in your cmd
+
+i. cd C:\Users\Nour Noby\Downloads
+
+ii. pip install **mysqlclient-1.4.1-cp37-cp37m-win32.whl**

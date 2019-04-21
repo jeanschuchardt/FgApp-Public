@@ -8,14 +8,14 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: datastage
-    security_opt:
-      - seccomp:unconfined
+      MYSQL_DATABASE: blogapp
     ports:
       - "3308:3306"
     volumes: 
       - ./my.conf:/etc/mysql/conf.d/config-file.cnf
       - ./data:/var/lib/mysql
+    security_opt:
+      - seccomp:unconfined
 
   # adminer:
   #   image: adminer
