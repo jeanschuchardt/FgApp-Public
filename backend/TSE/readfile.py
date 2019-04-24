@@ -43,9 +43,9 @@ def insert(data):
     try:
        # conn = configs['database']['str_conn']
         #print(conn)
-        eng = create_engine('mysql://root:example@localhost:3308/datastage')
+        eng = create_engine('mysql://admin:example@localhost:3308/datastage')
         
-        data.to_sql('stg_afiliados', eng, if_exists='replace', index=False)
+        data.to_sql('stg_afiliados', eng, if_exists='append', index=False)
 
         print('arquivo inserido')
     except Exception  as e:
