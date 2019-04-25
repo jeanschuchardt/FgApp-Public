@@ -28,3 +28,4 @@ def insert(result):
       
     result.to_sql('afiliados_2STG', eng, if_exists='append', index=False)
     print('arquivo inserido')
+
