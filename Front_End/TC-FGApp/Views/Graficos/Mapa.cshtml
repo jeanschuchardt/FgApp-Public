@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Mapa";
+}
+
+<h1>Mapa</h1>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+            ['Region', 'Percentual'],
+            ['Acre', 0],
+            ['Alagoas', 1],
+            ['Amapá', 2],
+            ['Amazonas', 3],
+            ['Bahia', 4],
+            ['Ceará', 1],
+            ['Distrito Federal', 2],
+            ['Espírito Santo', 3],
+            ['Goiás', 0],
+            ['Maranhão', 5],
+            ['Mato Grosso', 0],
+            ['Mato Grosso do Sul', 1],
+            ['Minas Gerais', 2],
+            ['Pará', 3],
+            ['Paraíba', 4],
+            ['Paraná', 3],
+            ['Pernambuco', 2],
+            ['Piauí', 4],
+            ['Rio de Janeiro', 1],
+            ['Rio Grande do Norte', 0],
+            ['Rio Grande do Sul', 1],
+            ['Rondônia', 5],
+            ['Roraima', 2],
+            ['Santa Catarina', 4],
+            ['São Paulo', 3],
+            ['Sergipe', 2],
+            ['Tocantins', 0]
+        ]);
+
+        var options = {
+            region: 'BR',
+            resolution: 'provinces',
+            colorAxis: { colors: ['#FFFFFF', '#FF0000'] },
+            backgroundColor: '#ffffff',
+            datalessRegionColor: '#dddddd',
+            defaultColor: '#f5f5f5',
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+        chart.draw(data, options);
+    };
+</script>
+
+
+<div id="geochart-colors" style="width: 700px; height: 433px;"></div>
+
+

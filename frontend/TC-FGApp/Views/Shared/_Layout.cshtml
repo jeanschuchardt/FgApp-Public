@@ -29,6 +29,32 @@
         <!-- Custom template styles-->
         <link href="~/css/sb-admin.css" rel="stylesheet">
     </environment>
+
+    <environment include="Development">
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/lib/jquery-easing/jquery.easing.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="~/lib/datatables/jquery.dataTables.js"></script>
+        <script src="~/lib/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/js/sb-admin.js"></script>
+    </environment>
+    <environment include="Staging,Production">
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/lib/jquery-easing/jquery.easing.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="~/lib/datatables/jquery.dataTables.js"></script>
+        <script src="~/lib/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/js/sb-admin.js"></script>
+    </environment>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body id="page-top">
@@ -84,21 +110,54 @@
             <li class="nav-item">
                 <a class="nav-link" href="/Home/Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span>Home</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Home/Graph">
+                <a class="nav-link" href="/Graficos/FuncoesOcupantes">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
+                    <span>Funções x Ocupantes</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Graficos/Index">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Distribuição Partido</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Graficos/Mapa">
+                    <i class="fas fa-fw fa-map"></i>
+                    <span>Distribuição de Funções</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Graficos/Filiados">
+                    <i class="fas fa-fw fa-map"></i>
+                    <span>Evolução Cargos</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/Home/Table">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
+                    <span>Servidores</span>
                 </a>
             </li>
+
+            @* Páginas de mock *@
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/Index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Mock Charts.js</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/Graph">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Mock Google Charts</span>
+                </a>
+            </li>
+
         </ul>
         <div id="content-wrapper">
 
@@ -131,32 +190,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <environment include="Development">
-        <!-- Bootstrap core JavaScript-->
-        <script src="~/lib/jquery/jquery.js"></script>
-        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="~/lib/jquery-easing/jquery.easing.js"></script>
-        <!-- Page level plugin JavaScript-->
-        <script src="~/lib/datatables/jquery.dataTables.js"></script>
-        <script src="~/lib/datatables/dataTables.bootstrap4.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="~/js/sb-admin.js"></script>
-    </environment>
-
-    <environment include="Staging,Production">
-        <!-- Bootstrap core JavaScript-->
-        <script src="~/lib/jquery/jquery.js"></script>
-        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="~/lib/jquery-easing/jquery.easing.js"></script>
-        <!-- Page level plugin JavaScript-->
-        <script src="~/lib/datatables/jquery.dataTables.js"></script>
-        <script src="~/lib/datatables/dataTables.bootstrap4.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="~/js/sb-admin.js"></script>
-    </environment>
 
         @RenderSection("Scripts", required: false)
 </body>
