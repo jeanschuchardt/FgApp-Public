@@ -14,3 +14,5 @@ if __name__ == '__main__':
     manin()
 
 
+# verificar para nao fazer downloads de duplicados 
+# #

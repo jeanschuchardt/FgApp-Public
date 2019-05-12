@@ -18,12 +18,12 @@ def manin():
   
     p1 = Process(target=down.downloader, args=(url,estadosL,partifosL,))
     p1.start()
-    p2 = Process(target=readFile, args=())
-    p2.start()
+    # p2 = Process(target=readFile, args=())
+    # p2.start()
   
-    p1.join()
-    p2.join()
-    #down.downloader(url,estadosL,partifosL)
+    # p1.join()
+    # p2.join()
+    # #down.downloader(url,estadosL,partifosL)
     
 def readFile():
     path = os.getcwd() + "//ok"

@@ -9,10 +9,6 @@ def downloader(url,estadosL,partidosL):
             print(urlFinal)
             download(urlFinal,partido,estado)
 
-            # remover para somente usar isso para fazer o download #
-            # manipula.unziper()
-            # manipula.organizaF()
-
 def download(urlFinal,p,e):
     c = urllib3.PoolManager()
     path = creatFolders('downloads')
