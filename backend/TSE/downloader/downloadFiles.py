@@ -11,7 +11,7 @@ def downloader(url,estadosL,partidosL):
 
 def download(urlFinal,p,e):
     c = urllib3.PoolManager()
-    path = creatFolders('downloads')
+    path = creatFolders('../downloads')
     filename = path+'/' +p+'_'+e+'.zip'
     with c.request('GET',urlFinal, preload_content=False) as resp, open(filename, 'wb') as out_file:
         shutil.copyfileobj(resp, out_file)
