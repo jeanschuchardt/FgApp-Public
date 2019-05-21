@@ -19,6 +19,17 @@
         <!-- Custom template styles-->
         <link href="~/css/sb-admin.css" rel="stylesheet">
     </environment>
+
+    <environment include="Development">
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/lib/jquery-easing/jquery.easing.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/js/sb-admin.js"></script>
+    </environment>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body id="page-top">
@@ -28,42 +39,19 @@
             <i class="fas fa-bars"></i>
         </button>
 
-        <!-- Navbar Search -->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Pesquisar..." aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-        
+        <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        </div>
+
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell fa-fw"></i>
-                    <span class="badge badge-danger">9+</span>
+                    <span class="badge badge-danger">2</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-envelope fa-fw"></i>
-                    <span class="badge badge-danger">7</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Informação</a>
+                    <a class="dropdown-item" href="#">Outra Informação</a>
                 </div>
             </li>
         </ul>
@@ -89,6 +77,42 @@
                     <span>Tables</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Graficos/Index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Graficos/FuncoesOcupantes">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Funções x Quantidade Ocupantes</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Graficos/Mapa">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Distribuição  de  Cargos  Comissionados</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Graficos/Filiados">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Top servidores que trocaram de função</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Graficos/EvolucaoCargo">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Evolução  dos  Cargo</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Graficos/PartidosServidores">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Partido  Político  e  Servidores</span>
+                </a>
+            </li>
         </ul>
         <div id="content-wrapper">
 
@@ -109,7 +133,7 @@
             <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>© FG App 2018</span>
+                        <span>© FG App @DateTime.Now.Year</span>
                     </div>
                 </div>
             </footer>
@@ -117,21 +141,10 @@
         <!-- /.content-wrapper -->
     </div>
     <!-- /#wrapper -->
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <environment include="Development">
-        <!-- Bootstrap core JavaScript-->
-        <script src="~/lib/jquery/jquery.js"></script>
-        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="~/lib/jquery-easing/jquery.easing.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="~/js/sb-admin.js"></script>
-    </environment>
 
     @RenderSection("Scripts", required: false)
 </body>
