@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FGApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using FGApp.Models;
+using System.Diagnostics;
 
 namespace FGApp.Controllers
 {

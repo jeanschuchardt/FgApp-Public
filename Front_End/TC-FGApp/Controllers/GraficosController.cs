@@ -1,10 +1,13 @@
 ﻿using DataBaseFramework.BO;
 using DataBaseFramework.Context;
 using DataBaseFramework.DataModel;
+using FGApp.Models;
+using FGApp.Util;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TC_FGApp.Controllers
 {
@@ -26,16 +29,31 @@ namespace TC_FGApp.Controllers
 
         public IActionResult FuncoesOcupantes()
         {
+            List<FuncoesOcupantesDM> listaFuncoesOcupantes = new FuncionarioPublicosBO(_connectionStrings.DefaultConnection).GetFuncoesxOcupantes();
 
-
-            return View();
+            return View(listaFuncoesOcupantes);
         }
 
-        public IActionResult Mapa()
+        public IActionResult DistribuicaoFuncoes()
         {
-            List<RegioesCargos> listaRegioesCargos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetAllRegioesCargos();
+            DistribuicaoFuncoesVM distribuicaoFuncoesVM = new DistribuicaoFuncoesVM();
+            distribuicaoFuncoesVM.regioesCargos = new RegioesCargos() { DataCargos = new DateTime(2010, 1, 1) };
 
-            return View();
+            List<RegioesCargos> listaRegioesCargos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetDistribuicaoFuncoes(distribuicaoFuncoesVM.regioesCargos);
+
+            distribuicaoFuncoesVM.arrayDados = DataNormalization.NormalizeDistribuicaoFuncoes(listaRegioesCargos);
+
+            return View(distribuicaoFuncoesVM);
+        }
+
+        [HttpPost]
+        public IActionResult DistribuicaoFuncoes(DistribuicaoFuncoesVM distribuicaoFuncoesVM)
+        {
+            List<RegioesCargos> listaRegioesCargos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetDistribuicaoFuncoes(distribuicaoFuncoesVM.regioesCargos);
+
+            distribuicaoFuncoesVM.arrayDados = DataNormalization.NormalizeDistribuicaoFuncoes(listaRegioesCargos);
+
+            return View(distribuicaoFuncoesVM);
         }
 
         public IActionResult Filiados()

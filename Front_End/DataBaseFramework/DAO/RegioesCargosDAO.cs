@@ -43,5 +43,39 @@ namespace DataBaseFramework.DAO
 
             return list;
         }
+
+        public List<RegioesCargos> GetDistribuicaoFuncoes(RegioesCargos regioesCargos)
+        {
+            List<RegioesCargos> list = new List<RegioesCargos>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT Estado, SUM(TotalCargos) AS TotalCargos
+                                        FROM regioescargos
+                                        WHERE YEAR(DataCargos) = @pDataCargo
+                                        GROUP BY Estado ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                cmd.Parameters.AddWithValue("@pDataCargo", regioesCargos.DataCargos.Year);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new RegioesCargos()
+                        {
+                            Estado = reader.GetString("Estado"),
+                            TotalCargos = reader.GetInt32("TotalCargos"),
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
     }
 }

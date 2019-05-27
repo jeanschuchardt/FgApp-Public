@@ -17,5 +17,10 @@ namespace DataBaseFramework.BO
         {
             return new FuncionarioPublicosDAO(ConnectionString).GetAllFuncionarios();
         }
+
+        public List<FuncoesOcupantesDM> GetFuncoesxOcupantes()
+        {
+            return new FuncionarioPublicosDAO(ConnectionString).GetFuncoesxOcupantes();
+        }
     }
 }

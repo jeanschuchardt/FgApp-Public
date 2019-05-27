@@ -41,5 +41,30 @@ namespace DataBaseFramework.DAO
 
             return list;
         }
+
+        public List<FuncoesOcupantesDM> GetFuncoesxOcupantes()
+        {
+            List<FuncoesOcupantesDM> list = new List<FuncoesOcupantesDM>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT COUNT(1) AS NumOcupantes, FuncaoAtual FROM funcionariopublicos GROUP BY FuncaoAtual ORDER BY FuncaoAtual", conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new FuncoesOcupantesDM()
+                        {
+                            NumOcupantes = reader.GetInt32("NumOcupantes"),
+                            FuncaoAtual = reader.GetString("FuncaoAtual"),
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
     }
 }
