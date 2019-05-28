@@ -66,13 +66,13 @@ def creatFolders():
     #f = file(filename) 
     '''
 def unziper():
-    path = os.getcwd() + '/donwloads'
+    path = os.getcwd() + '../donwloads'
     #print(origemPath)
     files = path+'/*.zip'
     fileToUnzip = glob.glob(files)
     #print(fileToUnzip)
 
-    path = os.getcwd() + '/unzip'
+    path = os.getcwd() + '../unzip'
     if not os.path.exists(path):
          os.mkdir(path)
 
@@ -85,6 +85,7 @@ def unziper():
             os.remove(fileX)
         except:
             print('not deleted '+ fileX)
+            
 def extrect_partidos():
     path = os.getcwd() + "//unzip"
     listFiles = glob.glob(path+'/*Cadastro.csv')

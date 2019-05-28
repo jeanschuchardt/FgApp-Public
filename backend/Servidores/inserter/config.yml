@@ -1,0 +1,5 @@
+files_root:
+    serv_path: ../readtoinsert
+    dst_serv_path: D:\Github\raw_data\Serv_done
+database:
+    str_conn: mysql://root:example@localhost:3308/datastage

@@ -9,27 +9,28 @@ def creatFolders(folderName):
          os.mkdir(path)
     return path
 
-def unziper():
-    path = os.getcwd() + '/downloads'
+def unziper(path):
+    #path = os.getcwd() + '/downloads'
     files = path+'/*.zip'
     fileToUnzip = glob.glob(files)
-    path = creatFolders('unzip')
+    path = creatFolders('../readtoinsert')
     for fileX in fileToUnzip:
         try: 
             zip_ref = zipfile.ZipFile(fileX,'r')
             zip_ref.extractall(path)
             zip_ref.close()
-       
-            removeFile(fileX)
+            print(path)
+            moveFile(fileX,'/../ok2')
         except Exception as e:
             
             print('>>>>')
             print(e)
-            removeFile(fileX)
+            print(fileX)
+           # moveFile(fileX,'/../ok2')
             print('<<<')
 
 def organizaF():
-    path = os.getcwd() + "//unzip"
+    path = os.getcwd() + "//readtoinsert"
     
     for (dirpath, dirs, files) in os.walk(path):
         for file in files:

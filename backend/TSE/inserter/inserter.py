@@ -17,10 +17,11 @@ def ReadConfig():
     return cfg
 
 def SelectFiles():
+    print("Start")
     configs = ReadConfig()
     folderPath = configs['files_root']['tse_path']
     while True:
-        files= glob.glob(folderPath +'//*rs.csv')
+        files= glob.glob(folderPath +'//*.csv')
         for file in files:
             ReadFile(file,configs)
 
