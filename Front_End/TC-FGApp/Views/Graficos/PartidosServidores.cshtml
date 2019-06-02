@@ -1,0 +1,51 @@
+﻿@model FGApp.Models.PartidosServidoresVM
+
+@{
+    ViewData["Title"] = "Partidos Servidores";
+}
+
+<h1>Partidos Servidores</h1>
+
+<form>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Ano: </label>
+                <select asp-for="anoSelecionado" asp-items="Model.selecaoAno" class="form-control">
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="submit" value="Buscar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-md-8">
+        <canvas id="grafico" width="900"></canvas>
+    </div>
+</div>
+
+<!-- Chart plugin JavaScript-->
+<script src="~/lib/chart.js/Chart.min.js"></script>
+
+<script type="text/javascript">
+    var ctx = $("#grafico");
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: @Html.Raw(Model.arrayPartidos),
+            datasets: [{
+                data: @Html.Raw(Model.arrayTotalServidores),
+                backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+            }],
+        },
+    });
+
+
+</script>

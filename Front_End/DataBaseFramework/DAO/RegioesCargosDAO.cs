@@ -52,7 +52,9 @@ namespace DataBaseFramework.DAO
             {
                 StringBuilder stringBuilder = new StringBuilder();
 
-                stringBuilder.Append(@" SELECT Estado, SUM(TotalCargos) AS TotalCargos
+                stringBuilder.Append(@" SELECT 
+                                            Estado, 
+                                            SUM(TotalCargos) AS TotalCargos
                                         FROM regioescargos
                                         WHERE YEAR(DataCargos) = @pDataCargo
                                         GROUP BY Estado ");
@@ -69,6 +71,43 @@ namespace DataBaseFramework.DAO
                         list.Add(new RegioesCargos()
                         {
                             Estado = reader.GetString("Estado"),
+                            TotalCargos = reader.GetInt32("TotalCargos"),
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public List<RegioesCargos> GetServidoresPorPartido(RegioesCargos regioesCargos)
+        {
+            List<RegioesCargos> list = new List<RegioesCargos>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT 
+                                            Partido, 
+                                            SUM(TotalCargos) AS TotalCargos
+                                        FROM regioescargos
+                                        WHERE YEAR(DataCargos) = @pDataCargo
+                                        GROUP BY Partido, DataCargos
+                                        ORDER BY DataCargos ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                cmd.Parameters.AddWithValue("@pDataCargo", regioesCargos.DataCargos.Year);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new RegioesCargos()
+                        {
+                            Partido = reader.GetString("Partido"),
                             TotalCargos = reader.GetInt32("TotalCargos"),
                         });
                     }

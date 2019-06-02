@@ -22,5 +22,10 @@ namespace DataBaseFramework.BO
         {
             return new RegioesCargosDAO(ConnectionString).GetDistribuicaoFuncoes(regioesCargos);
         }
+
+        public List<RegioesCargos> GetServidoresPorPartido(RegioesCargos regioesCargos)
+        {
+            return new RegioesCargosDAO(ConnectionString).GetServidoresPorPartido(regioesCargos);
+        }
     }
 }
