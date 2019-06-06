@@ -87,6 +87,7 @@ namespace TC_FGApp.Controllers
 
             partidosServidoresVM.arrayPartidos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Partido).ToArray());
             partidosServidoresVM.arrayTotalServidores = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.TotalCargos).ToArray());
+            partidosServidoresVM.arrayCores = Helper.ListaCores(listaPartidoServidores.Count());
 
             return View(partidosServidoresVM);
         }
@@ -104,8 +105,21 @@ namespace TC_FGApp.Controllers
 
             partidosServidoresVM.arrayPartidos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Partido));
             partidosServidoresVM.arrayTotalServidores = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.TotalCargos).ToArray());
+            partidosServidoresVM.arrayCores = Helper.ListaCores(listaPartidoServidores.Count());
 
             return View(partidosServidoresVM);
+        }
+
+        public IActionResult EvolucaoCargos()
+        {
+            EvolucaoCargosVM evolucaoCargosVM = new EvolucaoCargosVM();
+
+            List<RegioesCargos> listaPartidoServidores = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetServidoresPorAno(new RegioesCargos() { Estado = "RS" });
+
+            evolucaoCargosVM.arrayDataCargos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.DataCargos.Year));
+            evolucaoCargosVM.arrayTotalServidores = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.TotalCargos));
+
+            return View(evolucaoCargosVM);
         }
 
         public IActionResult Filiados()

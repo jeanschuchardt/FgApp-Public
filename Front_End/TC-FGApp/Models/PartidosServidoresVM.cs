@@ -11,5 +11,7 @@ namespace FGApp.Models
         public string arrayPartidos { get; set; }
 
         public string arrayTotalServidores { get; set; }
+
+        public string arrayCores { get; set; }
     }
 }

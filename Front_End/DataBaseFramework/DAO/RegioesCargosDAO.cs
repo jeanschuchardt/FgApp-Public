@@ -94,7 +94,7 @@ namespace DataBaseFramework.DAO
                                         FROM regioescargos
                                         WHERE YEAR(DataCargos) = @pDataCargo
                                         GROUP BY Partido, DataCargos
-                                        ORDER BY DataCargos ");
+                                        ORDER BY TotalCargos DESC ");
 
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
@@ -109,6 +109,42 @@ namespace DataBaseFramework.DAO
                         {
                             Partido = reader.GetString("Partido"),
                             TotalCargos = reader.GetInt32("TotalCargos"),
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public List<RegioesCargos> GetServidoresPorAno(RegioesCargos regioesCargos)
+        {
+            List<RegioesCargos> list = new List<RegioesCargos>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT DataCargos, TipoCargos, SUM(TotalCargos) AS TotalCargos
+                                        FROM regioescargos 
+                                        WHERE Estado = @pEstado 
+                                        GROUP BY DataCargos
+                                        ORDER BY DataCargos ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                cmd.Parameters.AddWithValue("@pEstado", regioesCargos.Estado);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new RegioesCargos()
+                        {
+                            DataCargos = reader.GetDateTime("DataCargos"),
+                            TipoCargos = reader.GetString("TipoCargos"),
+                            TotalCargos = reader.GetInt32("TotalCargos")
                         });
                     }
                 }

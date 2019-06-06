@@ -27,5 +27,10 @@ namespace DataBaseFramework.BO
         {
             return new RegioesCargosDAO(ConnectionString).GetServidoresPorPartido(regioesCargos);
         }
+
+        public List<RegioesCargos> GetServidoresPorAno(RegioesCargos regioesCargos)
+        {
+            return new RegioesCargosDAO(ConnectionString).GetServidoresPorAno(regioesCargos);
+        }
     }
 }

@@ -42,7 +42,7 @@
             labels: @Html.Raw(Model.arrayPartidos),
             datasets: [{
                 data: @Html.Raw(Model.arrayTotalServidores),
-                backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+                backgroundColor: @Html.Raw(Model.arrayCores),
             }],
         },
     });
