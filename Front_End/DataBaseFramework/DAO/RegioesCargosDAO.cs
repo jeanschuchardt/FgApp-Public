@@ -125,16 +125,18 @@ namespace DataBaseFramework.DAO
             {
                 StringBuilder stringBuilder = new StringBuilder();
 
-                stringBuilder.Append(@" SELECT DataCargos, TipoCargos, SUM(TotalCargos) AS TotalCargos
+                stringBuilder.Append(@" SELECT DataCargos, TipoCargos, SUM(TotalCargos) AS TotalCargos 
                                         FROM regioescargos 
                                         WHERE Estado = @pEstado 
-                                        GROUP BY DataCargos
+                                        AND TipoCargos = @pTipoCargos
+                                        GROUP BY DataCargos 
                                         ORDER BY DataCargos ");
 
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
 
                 cmd.Parameters.AddWithValue("@pEstado", regioesCargos.Estado);
+                cmd.Parameters.AddWithValue("@pTipoCargos", regioesCargos.TipoCargos);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {

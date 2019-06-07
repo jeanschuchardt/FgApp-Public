@@ -36,6 +36,7 @@ namespace TC_FGApp.Controllers
             return View(listaFuncoesOcupantes);
         }
 
+        [HttpGet]
         public IActionResult DistribuicaoFuncoes()
         {
             DistribuicaoFuncoesVM distribuicaoFuncoesVM = new DistribuicaoFuncoesVM();
@@ -71,6 +72,7 @@ namespace TC_FGApp.Controllers
             return View(distribuicaoFuncoesVM);
         }
 
+        [HttpGet]
         public IActionResult PartidosServidores()
         {
             PartidosServidoresVM partidosServidoresVM = new PartidosServidoresVM();
@@ -110,17 +112,56 @@ namespace TC_FGApp.Controllers
             return View(partidosServidoresVM);
         }
 
+        [HttpGet]
         public IActionResult EvolucaoCargos()
         {
             EvolucaoCargosVM evolucaoCargosVM = new EvolucaoCargosVM();
 
-            List<RegioesCargos> listaPartidoServidores = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetServidoresPorAno(new RegioesCargos() { Estado = "RS" });
+            List<string> listaEstados = new List<string>();
+            listaEstados.Add("RS");
+            listaEstados.Add("SP");
+            listaEstados.Add("SC");
+
+            evolucaoCargosVM.listaEstados = new SelectList(listaEstados);
+            evolucaoCargosVM.estadoSelecionado = "RS";
+
+            List<string> listaCargos = new List<string>();
+            listaCargos.Add("CC");
+            listaCargos.Add("CP");
+
+            evolucaoCargosVM.listaCargos = new SelectList(listaCargos);
+            evolucaoCargosVM.cargoSelecionado = "CC";
+
+            List<RegioesCargos> listaPartidoServidores = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetServidoresPorAno(new RegioesCargos() { Estado = evolucaoCargosVM.estadoSelecionado, TipoCargos = evolucaoCargosVM.cargoSelecionado });
 
             evolucaoCargosVM.arrayDataCargos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.DataCargos.Year));
             evolucaoCargosVM.arrayTotalServidores = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.TotalCargos));
 
             return View(evolucaoCargosVM);
         }
+
+        [HttpPost]
+        public IActionResult EvolucaoCargos(EvolucaoCargosVM evolucaoCargosVM)
+        {
+            List<string> listaEstados = new List<string>();
+            listaEstados.Add("RS");
+            listaEstados.Add("SP");
+            listaEstados.Add("SC");
+            evolucaoCargosVM.listaEstados = new SelectList(listaEstados);
+
+            List<string> listaCargos = new List<string>();
+            listaCargos.Add("CC");
+            listaCargos.Add("CP");
+            evolucaoCargosVM.listaCargos = new SelectList(listaCargos);
+
+            List<RegioesCargos> listaPartidoServidores = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetServidoresPorAno(new RegioesCargos() { Estado = evolucaoCargosVM.estadoSelecionado, TipoCargos = evolucaoCargosVM.cargoSelecionado });
+
+            evolucaoCargosVM.arrayDataCargos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.DataCargos.Year));
+            evolucaoCargosVM.arrayTotalServidores = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.TotalCargos));
+
+            return View(evolucaoCargosVM);
+        }
+
 
         public IActionResult Filiados()
         {
