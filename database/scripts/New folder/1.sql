@@ -1,0 +1,37 @@
+INSERT IGNORE INTO `datastage`.`tbl_cargo_servidores`
+(
+`SIGLA_FUNCAO`,
+`NIVEL_FUNCAO`,
+`FUNCAO`,
+`UORG_EXERCICIO`,
+`DATA_INICIO_AFASTAMENTO`,
+`DATA_TERMINO_AFASTAMENTO`,
+`DATA_INGRESSO_CARGOFUNCAO`,
+`ANO`,
+`MES`,
+`FK_SERVIDOR`,
+`UF_EXERCICIO`)
+
+SELECT 
+stg.SIGLA_FUNCAO,
+stg.NIVEL_FUNCAO,
+stg.FUNCAO,
+stg.UORG_EXERCICIO,
+STR_TO_DATE(stg.DATA_INICIO_AFASTAMENTO,'%d/%m/%Y')as DATA_INICIO_AFASTAMENTO,
+STR_TO_DATE(stg.DATA_TERMINO_AFASTAMENTO,'%d/%m/%Y')as DATA_TERMINO_AFASTAMENTO,
+STR_TO_DATE(stg.DATA_INGRESSO_CARGOFUNCAO,'%d/%m/%Y')as DATA_INGRESSO_CARGOFUNCAO,
+CAST(stg.ano AS UNSIGNED )  ANO,
+CAST(stg.MES AS UNSIGNED )  MES,
+css.id,
+stg.UF_EXERCICIO
+  
+FROM
+    cadastro_servidores css
+    
+	inner join stg_servidores stg
+	on    
+	css.Id_SERVIDOR_PORTAL = stg.Id_SERVIDOR_PORTAL 
+	and css.NOME = stg.NOME
+	and css.CPF = stg.CPF
+    and css.MATRICULA = stg.MATRICULA
+    order by  css.id_servidor_portal

@@ -32,7 +32,7 @@ ORDER BY
 ;
 commit;
 
-select * from cas_poli
+
 ;
 select count(*) from cadastro_politico
 ;

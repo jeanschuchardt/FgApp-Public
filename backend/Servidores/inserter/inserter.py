@@ -21,12 +21,18 @@ def SelectFiles():
     print("Start")
     configs = ReadConfig()
     folderPath = configs['files_root']['serv_path']
-    while True:
-        files= glob.glob(folderPath +'//2019*Cadastro.csv')
-        for file in files:
-            #print(file)
-            ReadFile(file,configs)
-        break
+    anos = ['2019','2018','2017','2016','2015','2014']
+   # anos = ['2016','2015','2014']
+    #anos = ['2013']
+
+    for ano in anos:
+            
+        while True:
+            files= glob.glob(folderPath +'//'+ano+'*Cadastro.csv')
+            for file in files:
+                #print(file)
+                ReadFile(file,configs)
+            break
         
 def ReadFile(path, configs):
     try:
@@ -34,6 +40,7 @@ def ReadFile(path, configs):
         chunksize = 10000
         fileName = os.path.basename(path)
         year = fileName[:4]
+        print(year)
         mounth = fileName[4:6]
         for df in pd.read_csv(path,encoding ="ansi", sep=',\s+', delimiter=';',skipinitialspace=True,memory_map=True , chunksize=chunksize,error_bad_lines=False  ):
             #dataRaw = pd.read_csv(path, encoding ="ansi", delimiter=';',low_memory=False, skipinitialspace=True)
@@ -76,15 +83,15 @@ def RemoveColuns(df,year,mounth):
         #for df in pd.read_csv(path,encoding ="ansi", sep=',\s+', delimiter=';',low_memory=False, skipinitialspace=True,memory_map=True , chunksize=chunksize):
         #process(chunk)
         #f=pd.read_csv(path,encoding ="ansi", delimiter=';',low_memory=False, skipinitialspace=True,memory_map=True )
-        keep_col = ['Id_SERVIDOR_PORTAL','NOME','CPF','MATRICULA','SIGLA_FUNCAO','NIVEL_FUNCAO','FUNCAO','UORG_EXERCICIO','DATA_INICIO_AFASTAMENTO','DATA_TERMINO_AFASTAMENTO','DATA_INGRESSO_CARGOFUNCAO','DATA_NOMEACAO_CARGOFUNCAO','DATA_INGRESSO_ORGAO']
+        keep_col = ['Id_SERVIDOR_PORTAL','NOME','CPF','MATRICULA','SIGLA_FUNCAO','NIVEL_FUNCAO','FUNCAO','UORG_EXERCICIO','DATA_INICIO_AFASTAMENTO','DATA_TERMINO_AFASTAMENTO','DATA_INGRESSO_CARGOFUNCAO','UF_EXERCICIO']
         df = df[keep_col]
         df.columns = df.columns.str.replace(' ','_')
         #df.columns = df.columns = df.columns.str.replace(' ', '_')
         df = df[df.SIGLA_FUNCAO != '-1']
-        
-        df.insert(len(df.columns),"ANO",year)
+                
         df.insert(len(df.columns),"MES",mounth)
-
+        df.insert(len(df.columns),"ANO",year)
+        print(df)
         # print(df)
         insert(df)
         #insert(f)

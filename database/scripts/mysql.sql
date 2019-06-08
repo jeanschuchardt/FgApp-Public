@@ -48,3 +48,5 @@ group by uf, SIGLA_DO_PARTIDO
 
 ;
 delete from stg_afiliados
+;
+drop table stg_servidores;
