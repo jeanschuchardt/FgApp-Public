@@ -44,6 +44,83 @@ namespace DataBaseFramework.DAO
             return list;
         }
 
+        public List<string> GetAllEstadosDisponiveis()
+        {
+            List<string> list = new List<string>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT DISTINCT(Estado) FROM regioescargos ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(reader.GetString("Estado"));
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public List<string> GetAllTipoCargosDisponiveis()
+        {
+            List<string> list = new List<string>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT DISTINCT(TipoCargos) FROM regioescargos ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(reader.GetString("TipoCargos"));
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public List<int> GetAllDataCargosDisponiveis()
+        {
+            List<int> list = new List<int>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT DISTINCT(YEAR(DataCargos)) AS DataCargos 
+                                        FROM regioescargos 
+                                        ORDER BY DataCargos ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(reader.GetInt32("DataCargos"));
+                    }
+                }
+            }
+
+            return list;
+        }
+
         public List<RegioesCargos> GetDistribuicaoFuncoes(RegioesCargos regioesCargos)
         {
             List<RegioesCargos> list = new List<RegioesCargos>();

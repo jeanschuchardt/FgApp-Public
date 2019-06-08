@@ -41,10 +41,7 @@ namespace TC_FGApp.Controllers
         {
             DistribuicaoFuncoesVM distribuicaoFuncoesVM = new DistribuicaoFuncoesVM();
 
-            List<int> listaAnos = new List<int>();
-            listaAnos.Add(2001);
-            listaAnos.Add(2010);
-            listaAnos.Add(2018);
+            List<int> listaAnos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
 
             distribuicaoFuncoesVM.selecaoAno = new SelectList(listaAnos);
             distribuicaoFuncoesVM.anoSelecionado = 2010;
@@ -59,10 +56,7 @@ namespace TC_FGApp.Controllers
         [HttpPost]
         public IActionResult DistribuicaoFuncoes(DistribuicaoFuncoesVM distribuicaoFuncoesVM)
         {
-            List<int> listaAnos = new List<int>();
-            listaAnos.Add(2001);
-            listaAnos.Add(2010);
-            listaAnos.Add(2018);
+            List<int> listaAnos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
             distribuicaoFuncoesVM.selecaoAno = new SelectList(listaAnos);
 
             List<RegioesCargos> listaRegioesCargos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetDistribuicaoFuncoes(new RegioesCargos() { DataCargos = new DateTime(distribuicaoFuncoesVM.anoSelecionado, 1, 1) });
@@ -77,10 +71,7 @@ namespace TC_FGApp.Controllers
         {
             PartidosServidoresVM partidosServidoresVM = new PartidosServidoresVM();
 
-            List<int> listaAnos = new List<int>();
-            listaAnos.Add(2001);
-            listaAnos.Add(2010);
-            listaAnos.Add(2018);
+            List<int> listaAnos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
 
             partidosServidoresVM.selecaoAno = new SelectList(listaAnos);
             partidosServidoresVM.anoSelecionado = 2010;
@@ -97,10 +88,7 @@ namespace TC_FGApp.Controllers
         [HttpPost]
         public IActionResult PartidosServidores(PartidosServidoresVM partidosServidoresVM)
         {
-            List<int> listaAnos = new List<int>();
-            listaAnos.Add(2001);
-            listaAnos.Add(2010);
-            listaAnos.Add(2018);
+            List<int> listaAnos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
             partidosServidoresVM.selecaoAno = new SelectList(listaAnos);
 
             List<RegioesCargos> listaPartidoServidores = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetServidoresPorPartido(new RegioesCargos() { DataCargos = new DateTime(partidosServidoresVM.anoSelecionado, 1, 1) });
@@ -117,17 +105,12 @@ namespace TC_FGApp.Controllers
         {
             EvolucaoCargosVM evolucaoCargosVM = new EvolucaoCargosVM();
 
-            List<string> listaEstados = new List<string>();
-            listaEstados.Add("RS");
-            listaEstados.Add("SP");
-            listaEstados.Add("SC");
+            List<string> listaEstados = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetAllEstadosDisponiveis();
 
             evolucaoCargosVM.listaEstados = new SelectList(listaEstados);
             evolucaoCargosVM.estadoSelecionado = "RS";
 
-            List<string> listaCargos = new List<string>();
-            listaCargos.Add("CC");
-            listaCargos.Add("CP");
+            List<string> listaCargos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetAllTipoCargosDisponiveis();
 
             evolucaoCargosVM.listaCargos = new SelectList(listaCargos);
             evolucaoCargosVM.cargoSelecionado = "CC";
@@ -143,15 +126,10 @@ namespace TC_FGApp.Controllers
         [HttpPost]
         public IActionResult EvolucaoCargos(EvolucaoCargosVM evolucaoCargosVM)
         {
-            List<string> listaEstados = new List<string>();
-            listaEstados.Add("RS");
-            listaEstados.Add("SP");
-            listaEstados.Add("SC");
+            List<string> listaEstados = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetAllEstadosDisponiveis();
             evolucaoCargosVM.listaEstados = new SelectList(listaEstados);
 
-            List<string> listaCargos = new List<string>();
-            listaCargos.Add("CC");
-            listaCargos.Add("CP");
+            List<string> listaCargos = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetAllTipoCargosDisponiveis();
             evolucaoCargosVM.listaCargos = new SelectList(listaCargos);
 
             List<RegioesCargos> listaPartidoServidores = new RegioesCargosBO(_connectionStrings.DefaultConnection).GetServidoresPorAno(new RegioesCargos() { Estado = evolucaoCargosVM.estadoSelecionado, TipoCargos = evolucaoCargosVM.cargoSelecionado });

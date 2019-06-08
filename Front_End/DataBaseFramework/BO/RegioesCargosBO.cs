@@ -18,6 +18,21 @@ namespace DataBaseFramework.BO
             return new RegioesCargosDAO(ConnectionString).GetAllRegioesCargos();
         }
 
+        public List<string> GetAllEstadosDisponiveis()
+        {
+            return new RegioesCargosDAO(ConnectionString).GetAllEstadosDisponiveis();
+        }
+
+        public List<string> GetAllTipoCargosDisponiveis()
+        {
+            return new RegioesCargosDAO(ConnectionString).GetAllTipoCargosDisponiveis();
+        }
+
+        public List<int> GetAllDataCargosDisponiveis()
+        {
+            return new RegioesCargosDAO(ConnectionString).GetAllDataCargosDisponiveis();
+        }
+
         public List<RegioesCargos> GetDistribuicaoFuncoes(RegioesCargos regioesCargos)
         {
             return new RegioesCargosDAO(ConnectionString).GetDistribuicaoFuncoes(regioesCargos);
