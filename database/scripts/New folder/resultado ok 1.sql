@@ -17,4 +17,5 @@ select distinct a.*, b.*
   limit 10	;
  
  
- s
+ 
+ 

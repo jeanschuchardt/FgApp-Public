@@ -28,19 +28,19 @@ ADD INDEX `cpf` (`CPF`(15) ASC) VISIBLE,
 ADD UNIQUE INDEX `serv` (`Id_SERVIDOR_PORTAL` ASC, `NOME`(100) ASC, `CPF`(15) ASC, `MATRICULA`(10) ASC) INVISIBLE
 ;
 
-INSERT IGNORE INTO cadastro_servidores
-(
-	Id_SERVIDOR_PORTAL,
-	NOME,
-	CPF,
-	MATRICULA
-)
-SELECT DISTINCT 
-	Id_SERVIDOR_PORTAL,
-	NOME,
-	CPF,
-	MATRICULA
-FROM  stg_servidores
+-- INSERT IGNORE INTO cadastro_servidores
+-- (
+-- 	Id_SERVIDOR_PORTAL,
+-- 	NOME,
+-- 	CPF,
+-- 	MATRICULA
+-- )
+-- SELECT DISTINCT 
+-- 	Id_SERVIDOR_PORTAL,
+-- 	NOME,
+-- 	CPF,
+-- 	MATRICULA
+-- FROM  stg_servidores
 ;
 
 CREATE TABLE cargo_servidores LIKE stg_servidores;

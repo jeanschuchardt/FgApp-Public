@@ -10,6 +10,8 @@ SELECT DISTINCT
                 vw_r_afiliados)
 
 */
+
+/*merge resultados vw_r_afiliados vw_r_servidores*/
 ;
 SELECT 
     aa.nome,

@@ -27,24 +27,18 @@ commit;
 
 
 insert ignore into politico_ativo (DATA_FILIACAO, DATA_DESFILIACAO, fk_cad_id, status)
+       SELECT DISTINCT
+        STR_TO_DATE(stg.DATA_DA_FILIACAO, '%d/%m/%Y') AS DATA_FILIACAO,
+        STR_TO_DATE(stg.DATA_DA_DESFILIACAO, '%d/%m/%Y') AS DATA_DA_DESFILIACAO,
+        cdp.id AS id,
+        stg.SITUACAO_DO_REGISTRO AS SITUACAO_DO_REGISTRO
+    FROM
+        (cadastro_politico cdp
+        JOIN stg_afiliados stg ON (((cdp.NUMERO_DA_INSCRICAO = stg.NUMERO_DA_INSCRICAO)
+            AND (cdp.SIGLA_DO_PARTIDO = stg.SIGLA_DO_PARTIDO))))
+    ORDER BY cdp.id
 
-select * from vw_af_ativo
-    /*
-    -- ou
-SELECT distinct
-    -- stg.nome_do_filiado,
-    -- stg.nome_do_filiado,
-	STR_TO_DATE(stg.DATA_DA_FILIACAO, '%d/%m/%Y') as DATA_FILIACAO,
-    STR_TO_DATE(stg.DATA_DA_DESFILIACAO, '%d/%m/%Y')as DATA_DA_DESFILIACAO,
-    cdp.id,
-    stg.SITUACAO_DO_REGISTRO
-FROM
-    cadastro_politico cdp
-    inner join stg_afiliados stg
-    on    cdp.NUMERO_DA_INSCRICAO = stg.NUMERO_DA_INSCRICAO
-        AND cdp.SIGLA_DO_PARTIDO = stg.SIGLA_DO_PARTIDO
-        
-order by  cdp.id*/
+--  select * from vw_af_ativo
     
       
 ;

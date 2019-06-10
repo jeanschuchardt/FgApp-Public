@@ -1,3 +1,20 @@
+INSERT IGNORE INTO cadastro_servidores
+(
+	Id_SERVIDOR_PORTAL,
+	NOME,
+	CPF,
+	MATRICULA
+)
+SELECT DISTINCT 
+	Id_SERVIDOR_PORTAL,
+	NOME,
+	CPF,
+	MATRICULA
+FROM  stg_servidores
+
+
+;
+
 INSERT IGNORE INTO `datastage`.`tbl_cargo_servidores`
 (
 `SIGLA_FUNCAO`,
