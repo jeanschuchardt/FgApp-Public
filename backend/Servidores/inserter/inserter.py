@@ -6,10 +6,10 @@ import glob
 import os
 import csv
 
-#class ReadFiles():
+#class read_files():
 configs = ''
     
-def ReadConfig():
+def read_config():
     #ler do arquivo de configuração
     with open("config.yml", 'r') as ymlfile:
         cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
@@ -17,9 +17,9 @@ def ReadConfig():
     #print(x)
     return cfg
 
-def SelectFiles():
+def select_files():
     print("Start")
-    configs = ReadConfig()
+    configs = read_config()
     folderPath = configs['files_root']['serv_path']
     anos = ['2019','2018','2017','2016','2015','2014']
    # anos = ['2016','2015','2014']
@@ -31,10 +31,10 @@ def SelectFiles():
             files= glob.glob(folderPath +'//'+ano+'*Cadastro.csv')
             for file in files:
                 #print(file)
-                ReadFile(file,configs)
+                read_file(file,configs)
             break
         
-def ReadFile(path, configs):
+def read_file(path, configs):
     try:
         print(path)
         chunksize = 10000
@@ -45,21 +45,21 @@ def ReadFile(path, configs):
         for df in pd.read_csv(path,encoding ="ansi", sep=',\s+', delimiter=';',skipinitialspace=True,memory_map=True , chunksize=chunksize,error_bad_lines=False  ):
             #dataRaw = pd.read_csv(path, encoding ="ansi", delimiter=';',low_memory=False, skipinitialspace=True)
             try:
-                RemoveColuns(df,year,mounth)
+                remove_coluns(df,year,mounth)
             except Exception  as e:
                 print (e)
         move(path,configs)
     except Exception  as e:
         print (e)
 
-def creatFolders(folderName):
+def create_folders(folderName):
     path = os.getcwd() + '/' + folderName
     if not os.path.exists(path):
          os.mkdir(path)
     return path
 
 def move(scr,config):
-    dst = creatFolders('../ServidoresFilesInserted')
+    dst = create_folders('../ServidoresFilesInserted')
 
     try:
         base=os.path.basename(scr)
@@ -67,7 +67,7 @@ def move(scr,config):
     except Exception as e:
         print('>>>>>>\n MoveError: \n', e)
 
-def RemoveColuns(df,year,mounth):
+def remove_coluns(df,year,mounth):
     # try:
     #     keep_col = ['NOME DO FILIADO','NUMERO DA INSCRICAO','SIGLA DO PARTIDO','UF','NOME DO MUNICIPIO','ZONA ELEITORAL','SECAO ELEITORAL','DATA DA FILIACAO','SITUACAO DO REGISTRO','DATA DA DESFILIACAO']
     #     df = dataRaw[keep_col]
@@ -76,7 +76,7 @@ def RemoveColuns(df,year,mounth):
     #     df.columns = df.columns.str.replace(' ','_')
     #     insert(df)
     # except Exception  as e:
-    #     print("RemoveColuns")
+    #     print("remove_coluns")
     #     print (e)
     try:    
         #chunksize = 10000
@@ -98,14 +98,17 @@ def RemoveColuns(df,year,mounth):
     except Exception as e:
         print('>>>>')
         print('error:', e)
-        print('error:', path)
+     #   print('error:', path)
         print('>>>>')
         
 
 def insert(result):
     try:
-       
-        eng = create_engine('mysql://admin:example@localhost:3308/datastage') #ler isso do config e remover do codigo
+       #TODO
+       # ler isso do config e remover do codigo
+       # 
+       # ##
+        eng = create_engine('mysql://admin:example@localhost:3308/datastage') 
      
         result.to_sql('stg_servidores', eng, if_exists='append', index=False)
         print('arquivo inserido')
@@ -116,4 +119,4 @@ def insert(result):
 
 
 
-SelectFiles()
+select_files()

@@ -18,11 +18,18 @@ def download(urlFinal,p,e):
         shutil.copyfileobj(resp, out_file)
     resp.release_conn() 
 
+#TODO
+# import create_folder from files_manipulation.py ##
 
-def creatFolders(folderName):
-    path = os.getcwd() + '/' + folderName
-    if not os.path.exists(path):
-         os.mkdir(path)
-    return path
+
+
+
+
+
+# def creatFolders(folderName):
+#     path = os.getcwd() + '/' + folderName
+#     if not os.path.exists(path):
+#          os.mkdir(path)
+#     return path
 
     
