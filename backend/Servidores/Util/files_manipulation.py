@@ -1,14 +1,23 @@
 import os    
 import zipfile
 
-def unzip(source_dir,dest_dir):
+def unzip_to(source_dir,dest_dir):
     try: 
         zip_ref = zipfile.ZipFile(source_dir,'r')
         zip_ref.extractall(dest_dir)
         zip_ref.close()
     # os.remove(fileX)
     except:
-        print('FILE NOW UNZIPED '+ source_dir)
+        print('FILE NOT UNZIPED '+ source_dir)
+
+def unzip_here(source_dir):
+    try: 
+        zip_ref = zipfile.ZipFile(source_dir,'r')
+        zip_ref.extractall(source_dir)
+        zip_ref.close()
+    # os.remove(fileX)
+    except:
+        print('FILE NOT UNZIPED '+ source_dir)
 
 def create_folder(path):
     try:
