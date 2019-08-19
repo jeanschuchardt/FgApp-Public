@@ -41,14 +41,39 @@ def insert_files(properties):
     f_inserted = properties['folders']['f_inserted']
     list_files = f_ma.list_files(f_unzip)
 
+    result = create_date_dictionary(list_files)
+
+    execute_tuple(result)
+
+def execute_tuple(result):
+    cadastro = ''
+    remuneracao = ''            
+    for i, x in enumerate(result.keys()):
+        print(result.get(x))
+        paths = result.get(x)
+
+
+        if 'Cadastro' in paths[0]:
+            cadastro = paths[0]
+            remuneracao = paths[1]
+        else:
+            cadastro = paths[1]
+            remuneracao = paths[0]
+
+        inst.insert_cadastro(cadastro,remuneracao)
+
+def create_date_dictionary(list_files):
     result = {}
- 
+
+    # create a dictionary if files by date 
+    # y/m
+    # ##
     for file in list_files:
         #print(file)#todo
         x = file.split('/')
         x = x[-1].split('_')
         x = x[0]
-        
+
         if(x not in result.keys()):
             result.update({x:file})        
         else:
@@ -59,20 +84,7 @@ def insert_files(properties):
             d = {x:temp_list}
             result.update(d)
             
-    for i, x in enumerate(result.keys()):
-        print(result.get(x))
-        paths = result.get(x)
-
-        cadastro = ''
-        remuneracao = ''
-        if 'Cadastro' in paths[0]:
-            cadastro = paths[0]
-            remuneracao = paths[1]
-        else:
-            cadastro = paths[1]
-            remuneracao = paths[0]
-        
-        inst.insert_cadastro(cadastro,remuneracao)
+    return result
 
 
 
