@@ -41,14 +41,6 @@ def unzip_move(source_dir,dest_dir,dest_zip):
     except:
         print('FILE NOW UNZIPED '+ source_dir)
 
-# def organize_folder(path,new_folder):
-#     for (dirpath, dirs, files) in os.walk(path):
-#         for file in files:
-#             if file.endswith('.csv'):
-#                 moveFile(dirpath+'\\'+file,new_folder)
-#             else:
-#                 removeFile(dirpath+'\\'+file)
-
 def list_files(path):
     files_r = []
     print(path)
