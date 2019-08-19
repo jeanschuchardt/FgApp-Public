@@ -1,0 +1,27 @@
+Como instalar um container com sonarqube e rodar
+	docker pull sonarqube
+	
+	docker run -d --name sonarqube -p 9000:9000 sonarqube
+
+
+Maven
+Rodar baixar as dependencias e rodar os testes
+	mvn clean install 
+
+Enviar relatorio para o sonar
+	mvn sonar:sonar -Dsonar.host.url=http://localhost:9000
+	
+Rodar a aplicação
+	mvn spring-boot:run
+	
+Instalar a aplicação sem rodar os testes
+	mvn clean install -Dmaven.test.skip=true
+
+
+
+--
+
+docker pull docker.bintray.io/jfrog/artifactory-oss
+
+
+docker run --name artifactory2 -d -p 8021:8081 docker.bintray.io/jfrog/artifactory-oss
