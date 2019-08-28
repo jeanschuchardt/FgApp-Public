@@ -41,18 +41,35 @@ def insert_cadastro(cadastro,remuneracao):
 
         result_set = define_columns_types(result_set)
         
-        merge= pd.merge(result_set,remuneracao_result_set,how='inner',on=['Id_SERVIDOR_PORTAL','NOME','CPF'])
+        # merge salva o resultado de inner join da tabala remuneraçao com a tabela cadastro
+        merge = pd.merge(result_set,remuneracao_result_set,how='inner',on=['Id_SERVIDOR_PORTAL','NOME','CPF'])
 
+        database_insert(merge)
         #  TODO
         # remover path estatico do codigo  
         #  #        
-        merge.to_csv("D:\\Github\\FGApp\\backend\\Servidores\\test\\"+  str(i) + datetime.now().strftime("%d-%m-%Y-%H-%M-%S") +'.csv', index=False)
+      
+      #  merge.to_csv("D:\\Github\\FGApp\\backend\\Servidores\\test\\"+  str(i) + datetime.now().strftime("%d-%m-%Y-%H-%M-%S") +'.csv', index=False)
 
         #
         # TODO
         # inserir no banco nesse momento
         # e nao  gerar um arquivo csv
         # #
+def database_insert(result):
+    try:
+       #TODO
+       # ler isso do config e remover do codigo
+       # 
+       # ##
+        eng = create_engine('mysql://admin:example@localhost:3308/datastage') 
+     
+        result.to_sql('stg_servidores', eng, if_exists='append', index=False)
+        print('arquivo inserido')
+    except Exception  as e:
+      
+        print("insert")
+        print (e)
 
 #
 # define tipos de dados e remove espaços em branco
