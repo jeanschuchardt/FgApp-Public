@@ -47,6 +47,13 @@ def insert_cadastro(cadastro,remuneracao):
         # remover path estatico do codigo  
         #  #        
         merge.to_csv("D:\\Github\\FGApp\\backend\\Servidores\\test\\"+  str(i) + datetime.now().strftime("%d-%m-%Y-%H-%M-%S") +'.csv', index=False)
+
+        #
+        # TODO
+        # inserir no banco nesse momento
+        # e nao  gerar um arquivo csv
+        # #
+
 #
 # define tipos de dados e remove espaços em branco
 # #
