@@ -24,9 +24,13 @@ def insert_cadastro(cadastro,remuneracao):
     #cria nova coluna para armazenar o gato total do servidor
     create_total_column(remuneracao_result_set)
 
-    #keep_col = ['ANO','MES','Id_SERVIDOR_PORTAL','CPF','NOME','total_remuneracao'] #remover valores intermediarios a soma 
-    #y = y[keep_col]
-    ###
+    # remover no futuro -> existe para test
+    # 
+    # keep_col = ['ANO','MES','Id_SERVIDOR_PORTAL','CPF','NOME','total_remuneracao'] #remover valores intermediarios a soma 
+    # y = y[keep_col]
+    #
+    # 
+    # ##
 
     for i, result_set in enumerate((pd.read_csv(cadastro, encoding ="ISO-8859-1", delimiter=';', skipinitialspace=True,error_bad_lines = False, engine='c',chunksize=chunk))):
         
@@ -39,10 +43,12 @@ def insert_cadastro(cadastro,remuneracao):
         
         merge= pd.merge(result_set,remuneracao_result_set,how='inner',on=['Id_SERVIDOR_PORTAL','NOME','CPF'])
 
-        
+        #  TODO
+        # remover path estatico do codigo  
+        #  #        
         merge.to_csv("D:\\Github\\FGApp\\backend\\Servidores\\test\\"+  str(i) + datetime.now().strftime("%d-%m-%Y-%H-%M-%S") +'.csv', index=False)
-##
-# rdefine tipos de dados e remove espaços em branco
+#
+# define tipos de dados e remove espaços em branco
 # #
 def define_columns_types(resul_set):
     resul_set.CPF = resul_set.CPF.str.replace('\D','')
