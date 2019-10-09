@@ -36,6 +36,13 @@ namespace TC_FGApp.Controllers
             return View(listaFuncoesOcupantes);
         }
 
+        public IActionResult ServidoresFiliados()
+        {
+
+
+            return View();
+        }
+
         [HttpGet]
         public IActionResult DistribuicaoFuncoes()
         {
@@ -139,6 +146,7 @@ namespace TC_FGApp.Controllers
 
             return View(evolucaoCargosVM);
         }
+
 
 
         public IActionResult Filiados()
