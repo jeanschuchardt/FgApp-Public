@@ -25,3 +25,18 @@ docker run --name aspnetapp --rm -it -p 8080:80 /aspnetapp
 docker run -it --rm -p 8080:80 --name testapp aspnetapp 
 
  
+create a virtual environment 
+py -m venv env
+
+start the env
+    source env/Scripts/activate
+
+freeze dependencies
+    pip freeze > req.txt
+
+install dependencies
+    pip install -r req.txt
+
+install local dependencies
+     pip install "\backend\libs\mysqlclient-1.4.4-cp37-cp37m-win32.whl"
+
