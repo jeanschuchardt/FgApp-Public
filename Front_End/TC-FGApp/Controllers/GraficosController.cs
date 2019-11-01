@@ -31,9 +31,9 @@ namespace TC_FGApp.Controllers
 
         public IActionResult FuncoesOcupantes()
         {
-            List<FuncoesOcupantesDM> listaFuncoesOcupantes = new FuncionarioPublicosBO(_connectionStrings.DefaultConnection).GetFuncoesxOcupantes();
+            List<Analise> analises = new AnaliseBO(_connectionStrings.DefaultConnection).GetAllAnalises();
 
-            return View(listaFuncoesOcupantes);
+            return View(analises);
         }
 
         public IActionResult ServidoresFiliados()
