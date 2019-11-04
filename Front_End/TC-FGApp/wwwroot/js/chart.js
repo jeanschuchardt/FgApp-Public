@@ -130,8 +130,8 @@ $(function () {
             point: {
                 radius: 0
             }
-        }
-
+        },
+        maintainAspectRatio: false
     };
     var doughnutPieData = {
         datasets: [{
@@ -166,7 +166,8 @@ $(function () {
         animation: {
             animateScale: true,
             animateRotate: true
-        }
+        },
+        maintainAspectRatio: false
     };
     var areaData = {
         labels: ["2013", "2014", "2015", "2016", "2017"],
@@ -225,7 +226,8 @@ $(function () {
             filler: {
                 propagate: true
             }
-        }
+        },
+        maintainAspectRatio: false
     }
 
     var areaOptionsDark = {
@@ -252,7 +254,8 @@ $(function () {
             filler: {
                 propagate: true
             }
-        }
+        },
+        maintainAspectRatio: false
     }
 
     var multiAreaData = {
@@ -306,7 +309,8 @@ $(function () {
                     display: false
                 }
             }]
-        }
+        },
+        maintainAspectRatio: false
     }
 
     var scatterChartData = {
@@ -431,7 +435,8 @@ $(function () {
                 type: 'linear',
                 position: 'bottom'
             }]
-        }
+        },
+        maintainAspectRatio: false
     }
 
     var scatterChartOptionsDark = {
@@ -450,7 +455,8 @@ $(function () {
                     zeroLineColor: '#322f2f'
                 }
             }]
-        }
+        },
+        maintainAspectRatio: false
     }
     // Get context with jQuery - using jQuery's .get() method.
     if ($("#barChart").length) {
