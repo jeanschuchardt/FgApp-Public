@@ -1,0 +1,11 @@
+16.309.464
+
+select count(*)
+from tb_af128
+FORCE INDEX (data_filiacao, reg)
+where upper(SITUACAO_DO_REGISTRO) = 'REGULAR'
+and DATA_DA_FILIACAO <=  DATE_SUB(NOW(), INTERVAL 80 year)
+
+'7956' pessoas que sao filiadas a mais de 80 anos
+
+7849  pessoas que sao filiadas a mais de 100 anos

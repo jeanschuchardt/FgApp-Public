@@ -94,8 +94,9 @@ def create_date_dictionary(list_files):
 properties = read_config()
 #create_folder_structure(properties)
 #down_files.info_loader(properties)
-#orgaziner_files(properties)
-#delete_files(properties)
+
+orgaziner_files(properties)
+delete_files(properties)
 
 insert_files(properties)
 

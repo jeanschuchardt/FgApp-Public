@@ -1,0 +1,280 @@
+select to_date("DATA DA FILIACAO",'DD/MM/YYYY') FROM "afiliados_STG" 
+select to_date("DATA DA DESFILIACAO",'DD/MM/YYYY') FROM "afiliados_STG" 
+limit 10;
+
+
+SELECT * FROM AFILIADOS_stg
+
+
+"18256020"
+"21689547"
+
+
+SELECT "NOME DO FILIADO",
+		"NUMERO DA INSCRICAO", 
+		"SIGLA DO PARTIDO", 
+		"UF", 
+		"CODIGO DO MUNICIPIO", 
+		"NOME DO MUNICIPIO",
+		"ZONA ELEITORAL",
+		"SECAO ELEITORAL", 
+		"SITUACAO DO REGISTRO", 
+		"DATA DA FILIACAO", 
+		
+		"DATA DA DESFILIACAO"
+		
+	FROM public."afiliados_STG"
+	
+	group by "NOME DO FILIADO",
+		"NUMERO DA INSCRICAO", 
+		"SIGLA DO PARTIDO", 
+		"UF", 
+		"CODIGO DO MUNICIPIO", 
+		"NOME DO MUNICIPIO",
+		"ZONA ELEITORAL",
+		"SECAO ELEITORAL", 
+		"DATA DA FILIACAO", 
+		"SITUACAO DO REGISTRO", 
+		"DATA DA DESFILIACAO"
+	
+	LIMIT 10;
+	
+	
+	
+select "NOME DO FILIADO",
+		"NUMERO DA INSCRICAO", 
+		"SIGLA DO PARTIDO", 
+		"UF", 
+		"CODIGO DO MUNICIPIO", 
+		"NOME DO MUNICIPIO",
+		"ZONA ELEITORAL",
+		"SECAO ELEITORAL", 
+		case
+			when "DATA DA DESFILIACAO" is null 
+			then "SITUACAO DO REGISTRO"
+		end,
+		min(to_date("DATA DA FILIACAO",'DD/MM/YYYY')),
+		max(to_date("DATA DA DESFILIACAO",'DD/MM/YYYY')) 
+					from "afiliados2_stg" 
+					where "NUMERO DA INSCRICAO" = 1571882453
+					
+					group by 
+						"NOME DO FILIADO",
+						"NUMERO DA INSCRICAO", 
+						"SIGLA DO PARTIDO", 
+						"UF", 
+						"CODIGO DO MUNICIPIO", 
+						"NOME DO MUNICIPIO",
+						"ZONA ELEITORAL",
+						"SECAO ELEITORAL",
+						"SITUACAO DO REGISTRO",
+						"DATA DA DESFILIACAO"
+					
+					ORDER BY "NUMERO DA INSCRICAO";
+					
+					
+					
+INSERT INTO afiliados 
+select "NOME DO FILIADO",
+		"NUMERO DA INSCRICAO", 
+		"SIGLA DO PARTIDO", 
+		"UF", 
+		"CODIGO DO MUNICIPIO", 
+		"NOME DO MUNICIPIO",
+		"ZONA ELEITORAL",
+		"SECAO ELEITORAL", 
+		min(to_date("DATA DA FILIACAO",'DD/MM/YYYY')),
+		"SITUACAO DO REGISTRO",
+		max(to_date("DATA DA DESFILIACAO",'DD/MM/YYYY')) 
+					from "afiliados_STG" 
+					--where "NUMERO DA INSCRICAO" = 1571882453
+					group by 
+						"NOME DO FILIADO",
+						"NUMERO DA INSCRICAO", 
+						"SIGLA DO PARTIDO", 
+						"UF", 
+						"CODIGO DO MUNICIPIO", 
+						"NOME DO MUNICIPIO",
+						"ZONA ELEITORAL",
+						"SECAO ELEITORAL",
+						"SITUACAO DO REGISTRO"
+ON CONFLICT ("NUMERO_INSCRICAO") DO UPDATE 
+  			SET "DATA_FILIACAO" = EXCLUDED."DATA_FILIACAO",
+			 "SITUACAO_REGISTRO" = EXCLUDED."SITUACAO_REGISTRO",
+			 "DATA_DESFILIACAO" = EXCLUDED."DATA_DESFILIACAO";
+     
+INSERT INTO afiliados 
+select "NOME DO FILIADO",
+		"NUMERO DA INSCRICAO", 
+		"SIGLA DO PARTIDO", 
+		"UF", 
+		"CODIGO DO MUNICIPIO", 
+		"NOME DO MUNICIPIO",
+		"ZONA ELEITORAL",
+		"SECAO ELEITORAL", 
+		min(to_date("DATA DA FILIACAO",'DD/MM/YYYY')),
+		"SITUACAO DO REGISTRO",
+		max(to_date("DATA DA DESFILIACAO",'DD/MM/YYYY')) 
+					from "afiliados_STG" 
+					--where "NUMERO DA INSCRICAO" = 1571882453
+					group by 
+						"NOME DO FILIADO",
+						"NUMERO DA INSCRICAO", 
+						"SIGLA DO PARTIDO", 
+						"UF", 
+						"CODIGO DO MUNICIPIO", 
+						"NOME DO MUNICIPIO",
+						"ZONA ELEITORAL",
+						"SECAO ELEITORAL",
+						"SITUACAO DO REGISTRO"
+					oN CONFLICT DO NOTHING;
+ON CONFLICT ("NUMERO_INSCRICAO") DO UPDATE 
+  			SET "DATA_FILIACAO" = EXCLUDED."DATA_FILIACAO",
+			 "SITUACAO_REGISTRO" = EXCLUDED."SITUACAO_REGISTRO",
+			 "DATA_DESFILIACAO" = EXCLUDED."DATA_DESFILIACAO";
+			 
+			 
+INSERT INTO public.servidores_nome ("Id_SERVIDOR_PORTAL", "NOME", "CPF")
+	SELECT "Id_SERVIDOR_PORTAL", "NOME", "CPF"
+	FROM public."Wservidores_STG"
+	on conflict do nothing;
+	
+	INSERT INTO public.servidores_nome ("Id_SERVIDOR_PORTAL", "NOME", "CPF")
+	SELECT "Id_SERVIDOR_PORTAL", "NOME", "CPF"
+	FROM public."Wservidores_STG"
+	on conflict do nothing;
+	
+	
+	
+     
+					
+					
+CREATE TABLE public."servidores_nome" (
+    "id" bigserial,
+	"Id_SERVIDOR_PORTAL" bigint,
+    "NOME" text,
+    "CPF" text
+);
+
+
+CREATE TABLE ServidoresTMP AS 	
+SELECT  
+"Id_SERVIDOR_PORTAL", 
+"NOME", 
+"CPF",
+"MATRICULA",
+"SIGLA_FUNCAO",
+"NIVEL_FUNCAO",
+"FUNCAO", 
+"UORG_EXERCICIO",
+to_date("DATA_INICIO_AFASTAMENTO", 'DD/MM/YYYY') AS DATA_INICIO_AFASTAMENTO,
+to_date("DATA_TERMINO_AFASTAMENTO", 'DD/MM/YYYY') AS DATA_TERMINO_AFASTAMENTO,
+to_date("DATA_INGRESSO_CARGOFUNCAO", 'DD/MM/YYYY') AS DATA_INGRESSO_CARGOFUNCAO,
+to_date(to_char("DATA_NOMEACAO_CARGOFUNCAO",'DD/MM/YYYY'), 'DD/MM/YYYY') AS DATA_NOMEACAO_CARGOFUNCAO,
+to_date("DATA_INGRESSO_ORGAO",'DD/MM/YYYY') AS DATA_INGRESSO_ORGAO
+FROM "Wservidores_STG"
+where "SIGLA_FUNCAO" != '-1'
+
+
+			
+INSERT INTO public.servidores("Id_SERVIDOR_PORTAL", "NOME", "CPF")
+	SELECT "Id_SERVIDOR_PORTAL", "NOME", "CPF"
+	FROM public."servidores_2STG"
+	on conflict do nothing;
+	
+	select distinct on (a."NUMERO_INSCRICAO",b."Id_SERVIDOR_PORTAL" )
+a."NUMERO_INSCRICAO", a."SIGLA_PARTIDO",  a."NOME_FILIADO", b."NOME", b."Id_SERVIDOR_PORTAL"
+	from "afiliados" a
+
+	inner join "servidores" b ON  a."NOME_FILIADO" = b."NOME"
+		
+	ORDER by a."NUMERO_INSCRICAO"
+	
+	
+	INSERT INTO public.afiliados(
+	"NOME_FILIADO", "NUMERO_INSCRICAO", "SIGLA_PARTIDO", "UF", "CODIGO_MUNICIPIO", "NOME_MUNICIPIO", "ZONA_ELEITORAL", "SECAO_ELEITORAL", "DATA_FILIACAO", "SITUACAO_REGISTRO", "DATA_DESFILIACAO")
+	SELECT
+	"NOME_DO_FILIADO", 
+	"NUMERO_DA_INSCRICAO", 
+	"SIGLA_DO_PARTIDO", 
+	"UF", 
+	"CODIGO_DO_MUNICIPIO",
+	"NOME_DO_MUNICIPIO", 
+	"ZONA_ELEITORAL",
+	"SECAO_ELEITORAL",
+	to_date("DATA_DA_FILIACAO",'DD/MM/YYYY') as "DATA_DA_FILIACAO",
+	"SITUACAO_DO_REGISTRO", 
+	to_date(to_char("DATA_DA_DESFILIACAO",'DD/MM/YYYY'), 'DD/MM/YYYY') as "DATA_DA_DESFILIACAO"
+	
+	FROM public."afiliados_2STG"
+	
+	on conflict do nothing;
+	
+	
+	
+	CREATE TABLE public.afiliados (
+    "NOME_FILIADO" text,
+    "NUMERO_INSCRICAO" bigint,
+    "SIGLA_PARTIDO" text,
+    "UF" text,
+    "CODIGO_MUNICIPIO" bigint,
+    "NOME_MUNICIPIO" text,
+    "ZONA_ELEITORAL" bigint,
+    "SECAO_ELEITORAL" bigint,
+    "DATA_FILIACAO" date,
+    "SITUACAO_REGISTRO" text,
+    "DATA_DESFILIACAO" date
+);
+
+ALTER TABLE public.afiliados
+    ADD PRIMARY KEY ("NUMERO_INSCRICAO");
+	
+	
+	
+	SELECT
+	"NOME_DO_FILIADO", 
+	"NUMERO_DA_INSCRICAO", 
+	"SIGLA_DO_PARTIDO", 
+	"UF", 
+	"CODIGO_DO_MUNICIPIO",
+	"NOME_DO_MUNICIPIO", 
+	"ZONA_ELEITORAL",
+	"SECAO_ELEITORAL",
+	to_date("DATA_DA_FILIACAO",'DD/MM/YYYY') as "DATA_DA_FILIACAO",
+	"SITUACAO_DO_REGISTRO", 
+	to_date("DATA_DA_DESFILIACAO", 'DD/MM/YYYY') as "DATA_DA_DESFILIACAO"
+	
+	FROM public."afiliados_2STG";
+	
+	
+	
+	INSERT INTO public.servidores("Id_SERVIDOR_PORTAL", "NOME", "CPF")
+	SELECT "Id_SERVIDOR_PORTAL", "NOME", "CPF"
+	FROM public."servidores_2STG"
+	on conflict do nothing;
+	
+		
+	SELECT count(*) FROM public."afiliados_2STG";
+	SELECT count(*) FROM public."servidores_2STG" where "ANO" ='2018';
+
+
+
+CREATE TABLE funcoes AS 	
+	select a.id,
+	b."MATRICULA",
+	b."SIGLA_FUNCAO",
+	b."NIVEL_FUNCAO", 
+	b."FUNCAO",
+	b."UORG_EXERCICIO",
+	b."DATA_INICIO_AFASTAMENTO",
+	b."DATA_TERMINO_AFASTAMENTO",
+	b."DATA_INGRESSO_CARGOFUNCAO", 
+	b."DATA_NOMEACAO_CARGOFUNCAO", 
+	b."DATA_INGRESSO_ORGAO", 
+	b."ANO", 
+	b."MES"
+	from servidores a
+	inner join "servidores_2STG" b ON  
+		a."NOME" = b."NOME" AND
+		a."CPF" =  b."CPF" and
+		a."Id_SERVIDOR_PORTAL" = b."Id_SERVIDOR_PORTAL"

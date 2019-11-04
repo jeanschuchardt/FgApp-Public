@@ -6,11 +6,11 @@ database:
 
 downloads:
     anos:
-      - 2014
-      - 2015
-      - 2016
-      - 2017
-      - 2018
+      #- 2014
+      #- 2015
+      #- 2016
+      #- 2017
+      #- 2018
       - 2019
     meses:
       - 1
@@ -31,7 +31,7 @@ url:
 
 
 folders:
-    f_zip: data/ziped_files
+    f_zip: downloads
     f_unzip: data/unziped_files
     f_inserted: data/inserted_files
     f_zip_backup: data/ziped_files_backup
