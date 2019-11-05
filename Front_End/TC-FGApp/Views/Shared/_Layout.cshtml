@@ -79,37 +79,39 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Graficos/EvolucaoCargos">
                             <span class="menu-title">Evolução Cargos</span>
-                            <i class="fas fa-fw fa-chart-area"></i>
+                            <i class="fas fa-fw fa-chart-area menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/Graficos/PartidosServidores">
                             <span class="menu-title">Partido e Servidores</span>
-                            <i class="fas fa-fw fa-chart-area"></i>
+                            <i class="fas fa-fw fa-chart-area menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/Graficos/ServidoresFiliados">
                             <span class="menu-title">Vinculo Servidores com Filiados</span>
-                            <i class="fas fa-fw fa-chart-area"></i>
+                            <i class="fas fa-fw fa-chart-area menu-icon"></i>
                         </a>
                     </li>
                 </ul>
             </nav>
             <!-- sidebar -->
             <div class="main-panel">
-                @RenderBody()
-                <!-- footer -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span>© FG App @DateTime.Now.Year</span>
-                    </div>
-                </footer>
-                <!-- footer -->
+                <div class="content-wrapper">
+                    @RenderBody()
+                    <!-- footer -->
+                    <footer class="footer">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span>© FG App @DateTime.Now.Year</span>
+                        </div>
+                    </footer>
+                    <!-- footer -->
+                </div>
             </div>
         </div>
     </div>
-    
+
     <script src="~/vendors/js/vendor.bundle.base.js"></script>
     <script src="~/vendors/chart.js/Chart.min.js"></script>
     <script src="~/js/off-canvas.js"></script>

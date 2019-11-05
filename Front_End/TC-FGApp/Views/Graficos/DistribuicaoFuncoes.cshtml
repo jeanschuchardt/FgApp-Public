@@ -4,9 +4,6 @@
     ViewData["Title"] = "Distribução";
 }
 
-<h1>Mapa</h1>
-
-
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {
@@ -34,7 +31,17 @@
     };
 </script>
 
-<form  method="post" role="form">
+<div class="page-header">
+    <h3 class="page-title"> Distribuição Cargos </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Distribuição Cargos</li>
+        </ol>
+    </nav>
+</div>
+
+<form method="post" role="form">
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
@@ -54,6 +61,13 @@
 </form>
 
 
-<div id="geochart-colors" style="width: 700px; height: 433px;"></div>
-
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body" style="margin: auto;">
+                <div id="geochart-colors" style="width: 700px; height: 433px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
 

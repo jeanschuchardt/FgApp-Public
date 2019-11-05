@@ -1,13 +1,21 @@
-﻿@model List<DataBaseFramework.DataModel.Analise>
+﻿@model List<DataBaseFramework.DataModel.FiliadosFuncionariosDTO>
 
 @{
     ViewData["Title"] = "Funções x Ocupantes";
 }
 
-<h1>Funções x Ocupantes</h1>
+<div class="page-header">
+    <h3 class="page-title"> Funções x Ocupantes </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Funções x Ocupantes</li>
+        </ol>
+    </nav>
+</div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <canvas id="grafico" height="1500" width="900"></canvas>
     </div>
 </div>
@@ -17,20 +25,19 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
 
 <script type="text/javascript">
-    var ctx = $("#grafico");
+    var ctx = $("#grafico").get(0).getContext("2d");;
     var myLineChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
             labels:
-            @(Json.Serialize(Model.Select(i => i.Func).ToArray()))
-            ,
+            @(Json.Serialize(Model.Select(i => i.Funcao).ToArray())),
             datasets: [{
-            label: "Total Cargos",
-                backgroundColor: "rgba(2,117,216,1)",
-                borderColor: "rgba(2,117,216,1)",
+                label: "Total Cargos",
+                backgroundColor: "#b66dffbb",
+                borderColor: "#b66dff",
+                borderWidth: 1,
                 data:
-                @(Json.Serialize(Model.Select(i => i.Quantidade).ToArray()))
-                ,
+                @(Json.Serialize(Model.Select(i => i.Quantidade).ToArray())),
             }],
         },
         options: {
@@ -38,24 +45,8 @@
                 xAxes: [{
                     time: {
                         unit: 'Ocupantes'
-                    },
-                    gridLines: {
-                        display: false
-                    },
-                    ticks: {
-                        maxTicksLimit: 100
                     }
-                }],
-                yAxes: [{
-                    ticks: {
-                        min: 0,
-                        max: 15000,
-                        maxTicksLimit: 100
-                    },
-                    gridLines: {
-                        display: true
-                    }
-                }],
+                }]
             },
             legend: {
                 display: false
@@ -66,9 +57,7 @@
                 datalabels: {
                     align: 'end',
                     anchor: 'end',
-                    backgroundColor: function(context) {
-                        return context.dataset.backgroundColor;
-                    },
+                    backgroundColor: "#b66dff",
                     borderRadius: 4,
                     color: 'white',
                     formatter: Math.round

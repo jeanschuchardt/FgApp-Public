@@ -6,14 +6,14 @@ namespace FGApp.Util
 {
     public static class DataNormalization
     {
-        public static string NormalizeDistribuicaoFuncoes(List<RegioesCargos> listaRegioesCargos)
+        public static string NormalizeDistribuicaoFuncoes(List<FiliadosFuncionariosDTO> listaFiliadosFuncionarios)
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(@"[ ['Region', 'Percentual'], ");
 
-            foreach(RegioesCargos regioesCargos in listaRegioesCargos)
+            foreach(FiliadosFuncionariosDTO FiliadosFuncionarios in listaFiliadosFuncionarios)
             {
-                stringBuilder.Append("['" + TraducaoEstados(regioesCargos.Estado) + "', " + regioesCargos.TotalCargos + "],");
+                stringBuilder.Append("['" + TraducaoEstados(FiliadosFuncionarios.UF) + "', " + FiliadosFuncionarios.Quantidade + "],");
             }
 
             stringBuilder.Length--;

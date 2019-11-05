@@ -23,32 +23,16 @@ namespace FGApp.API
         [HttpGet]
         public JsonResult GetAllFuncionarios(int ano)
         {
-            List<FuncionarioPublicos> listaFuncionarios = new FuncionarioPublicosBO(_connectionStrings.DefaultConnection).GetAllFuncionarios();
+            List<FiliadosFuncionariosDTO> listaFuncionarios = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetNumFuncionariosPorFuncao();
 
             if (listaFuncionarios.Count > 0)
             {
-                return Json(listaFuncionarios.Select(x => new { x.Nome, x.FuncaoAtual, x.FuncaoAnterior, x.DataTroca }).ToArray());
+                return Json(listaFuncionarios.Select(x => new { x.Nome, x.Funcao, x.Ano }).ToArray());
             }
             else
             {
                 return Json(null);
             }
         }
-
-        [HttpGet]
-        public JsonResult GetFuncoesxOcupantes(int ano)
-        {
-            List<FuncoesOcupantesDM> listaFuncoesOcupantes = new FuncionarioPublicosBO(_connectionStrings.DefaultConnection).GetFuncoesxOcupantes();
-
-            if (listaFuncoesOcupantes.Count > 0)
-            {
-                return Json(listaFuncoesOcupantes.Select(x => new { x.FuncaoAtual, x.NumOcupantes}).ToArray());
-            }
-            else
-            {
-                return Json(null);
-            }
-        }
-
     }
 }
