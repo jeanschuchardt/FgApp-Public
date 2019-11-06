@@ -8,6 +8,8 @@ namespace FGApp.Models
 
         public int anoSelecionado { get; set; }
 
+        public int mesSelecionado { get; set; }
+
         public string arrayPartidos { get; set; }
 
         public string arrayTotalServidores { get; set; }

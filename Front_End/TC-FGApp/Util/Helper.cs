@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FGApp.Util
 {
@@ -10,8 +8,9 @@ namespace FGApp.Util
     {
         public static string ColorGenerator()
         {
-            var random = new Random();
-            var color = String.Format("#{0:X6}", random.Next(0x1000000));
+            Random random = new Random();
+            string color = String.Format("#{0:X6}", random.Next(0x1000000));
+            color = color + "AA";
 
             return color;
         }

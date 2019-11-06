@@ -53,7 +53,7 @@ namespace TC_FGApp.Controllers
             distribuicaoFuncoesVM.selecaoAno = new SelectList(listaAnos);
             distribuicaoFuncoesVM.anoSelecionado = 2015;
 
-            List<FiliadosFuncionariosDTO> listaRegioesFuncoes = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetDistribuicaoFuncoes(new FiliadosFuncionariosDTO() { Ano = 2010 });
+            List<FiliadosFuncionariosDTO> listaRegioesFuncoes = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetDistribuicaoFuncoes(new FiliadosFuncionariosDTO() { Ano = 2015 });
 
             distribuicaoFuncoesVM.arrayDados = DataNormalization.NormalizeDistribuicaoFuncoes(listaRegioesFuncoes);
 
@@ -81,9 +81,10 @@ namespace TC_FGApp.Controllers
             List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
 
             partidosServidoresVM.selecaoAno = new SelectList(listaAnos);
-            partidosServidoresVM.anoSelecionado = 2010;
+            partidosServidoresVM.anoSelecionado = 2015;
+            partidosServidoresVM.mesSelecionado = 1;
 
-            List<FiliadosFuncionariosDTO> listaPartidoServidores = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetServidoresPorPartido(new FiliadosFuncionariosDTO() { Ano = partidosServidoresVM.anoSelecionado });
+            List<FiliadosFuncionariosDTO> listaPartidoServidores = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetServidoresPorPartido(new FiliadosFuncionariosDTO() { Ano = partidosServidoresVM.anoSelecionado, Mes = partidosServidoresVM.mesSelecionado });
 
             partidosServidoresVM.arrayPartidos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Partido).ToArray());
             partidosServidoresVM.arrayTotalServidores = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Quantidade).ToArray());
@@ -98,7 +99,7 @@ namespace TC_FGApp.Controllers
             List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
             partidosServidoresVM.selecaoAno = new SelectList(listaAnos);
 
-            List<FiliadosFuncionariosDTO> listaPartidoServidores = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetServidoresPorPartido(new FiliadosFuncionariosDTO() { Ano = partidosServidoresVM.anoSelecionado });
+            List<FiliadosFuncionariosDTO> listaPartidoServidores = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetServidoresPorPartido(new FiliadosFuncionariosDTO() { Ano = partidosServidoresVM.anoSelecionado, Mes = partidosServidoresVM.mesSelecionado });
 
             partidosServidoresVM.arrayPartidos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Partido));
             partidosServidoresVM.arrayTotalServidores = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Quantidade).ToArray());

@@ -9,7 +9,7 @@ namespace FGApp.Util
         public static string NormalizeDistribuicaoFuncoes(List<FiliadosFuncionariosDTO> listaFiliadosFuncionarios)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(@"[ ['Region', 'Percentual'], ");
+            stringBuilder.Append(@"[ ['Region', 'Total'], ");
 
             foreach(FiliadosFuncionariosDTO FiliadosFuncionarios in listaFiliadosFuncionarios)
             {
@@ -34,7 +34,7 @@ namespace FGApp.Util
                     return "Amapá";
                 case "AM":
                     return "Amazonas";
-                case "BH":
+                case "BA":
                     return "Bahia";
                 case "CE":
                     return "Ceará";

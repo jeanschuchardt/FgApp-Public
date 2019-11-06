@@ -103,13 +103,15 @@ namespace DataBaseFramework.DAO
 	                                        partido, 
 	                                        COUNT(id_portal) AS quantidade
                                         FROM resultados
-                                        WHERE ano = @pAno
+                                        WHERE mes = @pMes
+                                        AND ano = @pAno
                                         GROUP BY partido, ano
                                         ORDER BY quantidade DESC ");
 
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
 
+                cmd.Parameters.AddWithValue("@pMes", filiadosFuncionarios.Mes);
                 cmd.Parameters.AddWithValue("@pAno", filiadosFuncionarios.Ano);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
