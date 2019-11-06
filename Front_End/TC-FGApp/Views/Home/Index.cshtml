@@ -2,6 +2,12 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    .card-img-holder{
+        cursor: pointer;
+    }
+</style>
+
 <div class="page-header">
     <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -14,7 +20,9 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body" style="max-height:380px;">
-                <h4 class="card-title">Servidores x Filiados</h4>
+                <a href="/Graficos/ServidoresFiliados">
+                    <h4 class="card-title">Servidores x Filiados</h4>
+                </a>
                 <canvas id="areaChart"></canvas>
             </div>
         </div>
@@ -22,8 +30,9 @@
 </div>
 
 <div class="row">
+
     <div class="col-xl-3 col-md-6 stretch-card grid-margin">
-        <div class="card bg-gradient-danger card-img-holder text-white">
+        <div class="card bg-gradient-danger card-img-holder text-white" onclick="window.location.href = '/Graficos/DistribuicaoFuncoes';" >
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
@@ -34,8 +43,9 @@
             </div>
         </div>
     </div>
+
     <div class="col-xl-3 col-md-6 stretch-card grid-margin">
-        <div class="card bg-gradient-info card-img-holder text-white">
+        <div class="card bg-gradient-info card-img-holder text-white" onclick="window.location.href = '/Graficos/PartidosServidores';">
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
@@ -46,8 +56,9 @@
             </div>
         </div>
     </div>
+
     <div class="col-xl-3 col-md-6 stretch-card grid-margin">
-        <div class="card bg-gradient-success card-img-holder text-white">
+        <div class="card bg-gradient-success card-img-holder text-white" onclick="window.location.href = '/Graficos/ServidoresFiliados';">
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
@@ -58,8 +69,9 @@
             </div>
         </div>
     </div>
+
     <div class="col-xl-3 col-md-6 stretch-card grid-margin">
-        <div class="card bg-gradient-primary card-img-holder text-white">
+        <div class="card bg-gradient-primary card-img-holder text-white" onclick="window.location.href = '/Graficos/ServidoresFiliados';">
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
@@ -70,13 +82,16 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="row">
     <div class="col-lg-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body" style="max-height:350px;">
-                <h4 class="card-title">Partidos Servidores (Top 5)</h4>
+                <a href="/Graficos/PartidosServidores">
+                    <h4 class="card-title">Partidos Servidores (Top 5)</h4>
+                </a>
                 <canvas id="pieChart"></canvas>
             </div>
         </div>
