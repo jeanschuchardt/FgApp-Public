@@ -1,4 +1,5 @@
-﻿
+﻿@model FGApp.Models.ServidoresFiliadosVM
+
 @{
     ViewData["Title"] = "Servidores Filiados";
 }
@@ -21,14 +22,9 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label">Estado: </label>
-                <select class="form-control"></select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Função: </label>
-                <select class="form-control"></select>
+                <label class="control-label">Ano: </label>
+                <select asp-for="anoSelecionado" asp-items="Model.selecaoAno" class="form-control">
+                </select>
             </div>
         </div>
     </div>
@@ -44,8 +40,8 @@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body" style="margin: auto;">
-                <canvas id="myAreaChart" style="width: 100%; height: 300px"></canvas>
+            <div class="card-body">
+                <canvas id="myAreaChart" style="width: 100%; min-height: 370px; max-height: 580px;"></canvas>
             </div>
         </div>
     </div>
@@ -59,47 +55,48 @@
     var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: @Html.Raw(Model.arrayDataCargos),
-            datasets: [{
-                label: "Cargos",
-                lineTension: 0.3,
-                backgroundColor: "rgba(2,117,216,0.2)",
-                borderColor: "rgba(2,117,216,1)",
-                pointRadius: 7,
-                pointBackgroundColor: "rgba(2,117,216,1)",
-                pointBorderColor: "rgba(255,255,255,0.8)",
-                pointHoverRadius: 10,
-                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                pointHitRadius: 50,
-                pointBorderWidth: 2,
-                data: @Html.Raw(Model.arrayTotalServidores),
-            }],
+            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+            datasets: [
+                {
+                    label: 'Relações',
+                    data: @Html.Raw(Model.arrayTotalResultados),
+                    backgroundColor: '#fe709677',
+                    borderColor: '#fe7096',
+                    borderWidth: 1,
+                    fill: true,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointHitRadius: 25,
+                    pointBackgroundColor: '#fe7096CC',
+                },
+                {
+                    label: 'Servidores',
+                    data: @Html.Raw(Model.arrayTotalServidores),
+                    backgroundColor: '#90caf977',
+                    borderColor: '#90caf9',
+                    borderWidth: 1,
+                    fill: true,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointHitRadius: 25,
+                    pointBackgroundColor: '#90caf9CC',
+                }
+            ]
         },
         options: {
+            plugins: {
+                filler: {
+                    propagate: true
+                }
+            },
             scales: {
-                xAxes: [{
-                    time: {
-                        unit: 'date'
-                    },
-                    gridLines: {
-                        display: false
-                    },
-                    ticks: {
-                        maxTicksLimit: 7
-                    }
-                }],
                 yAxes: [{
                     ticks: {
-                        min: 0
-                    },
-                    gridLines: {
-                        color: "rgba(0, 0, 0, .125)",
+                        beginAtZero: true
                     }
-                }],
+                }]
             },
-            legend: {
-                display: false
-            }
+            maintainAspectRatio: false
         }
     });
 

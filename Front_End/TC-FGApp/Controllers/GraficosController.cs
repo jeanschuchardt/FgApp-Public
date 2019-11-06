@@ -36,13 +36,6 @@ namespace TC_FGApp.Controllers
             return View(NumFuncionariosPorFuncao);
         }
 
-        public IActionResult ServidoresFiliados()
-        {
-
-
-            return View();
-        }
-
         [HttpGet]
         public IActionResult DistribuicaoFuncoes()
         {
@@ -148,11 +141,38 @@ namespace TC_FGApp.Controllers
             return View(evolucaoCargosVM);
         }
 
-
-
-        public IActionResult Filiados()
+        [HttpGet]
+        public IActionResult ServidoresFiliados()
         {
-            return View();
+            ServidoresFiliadosVM servidoresFiliadosVM = new ServidoresFiliadosVM();
+
+            List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
+
+            servidoresFiliadosVM.selecaoAno = new SelectList(listaAnos);
+            servidoresFiliadosVM.anoSelecionado = 2015;
+
+            List<NumerosAnalisesDTO> listaRelacoes = new NumerosAnalisesBO(_connectionStrings.DefaultConnection).GetRelacaoPorAno(new NumerosAnalisesDTO() { Ano = 2015 });
+
+            servidoresFiliadosVM.arrayTotalResultados = JsonConvert.SerializeObject(listaRelacoes.Select(x => x.TotalResultados));
+            servidoresFiliadosVM.arrayTotalServidores = JsonConvert.SerializeObject(listaRelacoes.Select(x => x.TotalServidores));
+
+            return View(servidoresFiliadosVM);
         }
+
+        [HttpPost]
+        public IActionResult ServidoresFiliados(ServidoresFiliadosVM servidoresFiliadosVM)
+        {
+            List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
+
+            servidoresFiliadosVM.selecaoAno = new SelectList(listaAnos);
+
+            List<NumerosAnalisesDTO> listaRelacoes = new NumerosAnalisesBO(_connectionStrings.DefaultConnection).GetRelacaoPorAno(new NumerosAnalisesDTO() { Ano = servidoresFiliadosVM.anoSelecionado });
+
+            servidoresFiliadosVM.arrayTotalResultados = JsonConvert.SerializeObject(listaRelacoes.Select(x => x.TotalResultados));
+            servidoresFiliadosVM.arrayTotalServidores = JsonConvert.SerializeObject(listaRelacoes.Select(x => x.TotalServidores));
+
+            return View(servidoresFiliadosVM);
+        }
+
     }
 }

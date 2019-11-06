@@ -4,6 +4,7 @@ namespace DataBaseFramework.DataModel
 {
     public class NumerosAnalisesDTO
     {
+        #region colunasTabela
         public int Ano { get; set; }
 
         public string Letra { get; set; }
@@ -15,5 +16,6 @@ namespace DataBaseFramework.DataModel
         public decimal TotalResultados { get; set; }
 
         public decimal TotalServidores { get; set; }
+        #endregion
     }
 }

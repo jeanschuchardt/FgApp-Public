@@ -124,6 +124,10 @@ $(function () {
                 borderColor: '#fe7096',
                 borderWidth: 1,
                 fill: true,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointHitRadius: 25,
+                pointBackgroundColor: '#fe7096CC',
             },
             {
                 label: 'Servidores',
@@ -132,6 +136,10 @@ $(function () {
                 borderColor: '#90caf9',
                 borderWidth: 1,
                 fill: true,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointHitRadius: 25,
+                pointBackgroundColor: '#90caf9CC',
             }
         ]
     };
