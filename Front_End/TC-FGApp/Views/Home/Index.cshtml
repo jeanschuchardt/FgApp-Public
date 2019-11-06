@@ -3,7 +3,7 @@
 }
 
 <style>
-    .card-img-holder{
+    .card-img-holder {
         cursor: pointer;
     }
 </style>
@@ -32,7 +32,7 @@
 <div class="row">
 
     <div class="col-xl-3 col-md-6 stretch-card grid-margin">
-        <div class="card bg-gradient-danger card-img-holder text-white" onclick="window.location.href = '/Graficos/DistribuicaoFuncoes';" >
+        <div class="card bg-gradient-danger card-img-holder text-white" onclick="window.location.href = '/Graficos/DistribuicaoFuncoes';">
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
@@ -58,7 +58,7 @@
     </div>
 
     <div class="col-xl-3 col-md-6 stretch-card grid-margin">
-        <div class="card bg-gradient-success card-img-holder text-white" onclick="window.location.href = '/Graficos/ServidoresFiliados';">
+        <div class="card bg-gradient-success card-img-holder text-white" onclick="window.location.href = '/Dados/TabelaResultados';">
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
@@ -71,7 +71,7 @@
     </div>
 
     <div class="col-xl-3 col-md-6 stretch-card grid-margin">
-        <div class="card bg-gradient-primary card-img-holder text-white" onclick="window.location.href = '/Graficos/ServidoresFiliados';">
+        <div class="card bg-gradient-primary card-img-holder text-white" onclick="window.location.href = '/Dados/TabelaResultados';">
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
@@ -99,7 +99,9 @@
     <div class="col-lg-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body" style="max-height:350px;">
-                <h4 class="card-title">Funções x Ocupantes (Top 5)</h4>
+                <a href="/Graficos/FuncoesOcupantes">
+                    <h4 class="card-title">Funções x Ocupantes (Top 5)</h4>
+                </a>
                 <canvas id="barChart"></canvas>
             </div>
         </div>

@@ -11,16 +11,6 @@ namespace FGApp.Controllers
             return View();
         }
 
-        public IActionResult Graph()
-        {
-            return View();
-        }
-
-        public IActionResult Table()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

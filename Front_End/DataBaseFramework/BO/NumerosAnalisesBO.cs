@@ -1,5 +1,6 @@
 ﻿using DataBaseFramework.DAO;
 using DataBaseFramework.DataModel;
+using System;
 using System.Collections.Generic;
 
 namespace DataBaseFramework.BO
@@ -16,6 +17,11 @@ namespace DataBaseFramework.BO
         public List<NumerosAnalisesDTO> GetRelacaoPorAno(NumerosAnalisesDTO filiadosFuncionarios)
         {
             return new NumerosAnalisesDAO(ConnectionString).GetRelacaoPorAno(filiadosFuncionarios);
+        }
+
+        public List<NumerosAnalisesDTO> GetAllRelacoes()
+        {
+            return new NumerosAnalisesDAO(ConnectionString).GetAllRelacoes();
         }
     }
 }

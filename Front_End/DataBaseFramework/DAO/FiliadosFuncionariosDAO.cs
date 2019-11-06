@@ -31,6 +31,7 @@ namespace DataBaseFramework.DAO
                                                         COUNT(id_portal) AS quantidade
                                                     FROM resultados 
                                                     WHERE ano = 2018 
+                                                    AND mes = 12
                                                     GROUP BY sigla", conn);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
