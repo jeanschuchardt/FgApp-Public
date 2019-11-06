@@ -29,31 +29,6 @@ $(function () {
             fill: false
         }]
     };
-    var dataDark = {
-        labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
-        datasets: [{
-            label: '# of Votes',
-            data: [10, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1,
-            fill: false
-        }]
-    };
     var multiLineData = {
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
@@ -103,36 +78,6 @@ $(function () {
         },
         maintainAspectRatio: false
     };
-    var optionsDark = {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                },
-                gridLines: {
-                    color: '#322f2f',
-                    zeroLineColor: '#322f2f'
-                }
-            }],
-            xAxes: [{
-                ticks: {
-                    beginAtZero: true
-                },
-                gridLines: {
-                    color: '#322f2f',
-                }
-            }],
-        },
-        legend: {
-            display: false
-        },
-        elements: {
-            point: {
-                radius: 0
-            }
-        },
-        maintainAspectRatio: false
-    };
     var doughnutPieData = {
         datasets: [{
             data: [30, 40, 30],
@@ -170,55 +115,25 @@ $(function () {
         maintainAspectRatio: false
     };
     var areaData = {
-        labels: ["2013", "2014", "2015", "2016", "2017"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1,
-            fill: true, // 3: no fill
-        }]
-    };
-
-    var areaDataDark = {
-        labels: ["2013", "2014", "2015", "2016", "2017"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1,
-            fill: true, // 3: no fill
-        }]
+        labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        datasets: [
+            {
+                label: 'Relações',
+                data: [22676, 0, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
+                backgroundColor: '#fe709677',
+                borderColor: '#fe7096',
+                borderWidth: 1,
+                fill: true,
+            },
+            {
+                label: 'Servidores',
+                data: [100161, 0, 99574, 99405, 99940, 98874, 100155, 100353, 99751, 98973, 98999, 99488],
+                backgroundColor: '#90caf977',
+                borderColor: '#90caf9',
+                borderWidth: 1,
+                fill: true,
+            }
+        ]
     };
 
     var areaOptions = {
@@ -227,33 +142,12 @@ $(function () {
                 propagate: true
             }
         },
-        maintainAspectRatio: false
-    }
-
-    var areaOptionsDark = {
         scales: {
             yAxes: [{
                 ticks: {
                     beginAtZero: true
-                },
-                gridLines: {
-                    color: '#322f2f',
-                    zeroLineColor: '#322f2f'
                 }
-            }],
-            xAxes: [{
-                ticks: {
-                    beginAtZero: true
-                },
-                gridLines: {
-                    color: '#322f2f',
-                }
-            }],
-        },
-        plugins: {
-            filler: {
-                propagate: true
-            }
+            }]
         },
         maintainAspectRatio: false
     }
@@ -371,64 +265,6 @@ $(function () {
         ]
     }
 
-    var scatterChartDataDark = {
-        datasets: [{
-            label: 'First Dataset',
-            data: [{
-                x: -10,
-                y: 0
-            },
-            {
-                x: 0,
-                y: 3
-            },
-            {
-                x: -25,
-                y: 5
-            },
-            {
-                x: 40,
-                y: 5
-            }
-            ],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)'
-            ],
-            borderWidth: 1
-        },
-        {
-            label: 'Second Dataset',
-            data: [{
-                x: 10,
-                y: 5
-            },
-            {
-                x: 20,
-                y: -30
-            },
-            {
-                x: -25,
-                y: 15
-            },
-            {
-                x: -10,
-                y: 5
-            }
-            ],
-            backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-            ],
-            borderColor: [
-                'rgba(54, 162, 235, 1)',
-            ],
-            borderWidth: 1
-        }
-        ]
-    }
-
     var scatterChartOptions = {
         scales: {
             xAxes: [{
@@ -439,25 +275,6 @@ $(function () {
         maintainAspectRatio: false
     }
 
-    var scatterChartOptionsDark = {
-        scales: {
-            xAxes: [{
-                type: 'linear',
-                position: 'bottom',
-                gridLines: {
-                    color: '#322f2f',
-                    zeroLineColor: '#322f2f'
-                }
-            }],
-            yAxes: [{
-                gridLines: {
-                    color: '#322f2f',
-                    zeroLineColor: '#322f2f'
-                }
-            }]
-        },
-        maintainAspectRatio: false
-    }
     // Get context with jQuery - using jQuery's .get() method.
     if ($("#barChart").length) {
         var barChartCanvas = $("#barChart").get(0).getContext("2d");
@@ -469,31 +286,12 @@ $(function () {
         });
     }
 
-    if ($("#barChartDark").length) {
-        var barChartCanvasDark = $("#barChartDark").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChartDark = new Chart(barChartCanvasDark, {
-            type: 'bar',
-            data: dataDark,
-            options: optionsDark
-        });
-    }
-
     if ($("#lineChart").length) {
         var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
         var lineChart = new Chart(lineChartCanvas, {
             type: 'line',
             data: data,
             options: options
-        });
-    }
-
-    if ($("#lineChartDark").length) {
-        var lineChartCanvasDark = $("#lineChartDark").get(0).getContext("2d");
-        var lineChartDark = new Chart(lineChartCanvasDark, {
-            type: 'line',
-            data: dataDark,
-            options: optionsDark
         });
     }
 
@@ -542,30 +340,12 @@ $(function () {
         });
     }
 
-    if ($("#areaChartDark").length) {
-        var areaChartCanvas = $("#areaChartDark").get(0).getContext("2d");
-        var areaChart = new Chart(areaChartCanvas, {
-            type: 'line',
-            data: areaDataDark,
-            options: areaOptionsDark
-        });
-    }
-
     if ($("#scatterChart").length) {
         var scatterChartCanvas = $("#scatterChart").get(0).getContext("2d");
         var scatterChart = new Chart(scatterChartCanvas, {
             type: 'scatter',
             data: scatterChartData,
             options: scatterChartOptions
-        });
-    }
-
-    if ($("#scatterChartDark").length) {
-        var scatterChartCanvas = $("#scatterChartDark").get(0).getContext("2d");
-        var scatterChart = new Chart(scatterChartCanvas, {
-            type: 'scatter',
-            data: scatterChartDataDark,
-            options: scatterChartOptionsDark
         });
     }
 
