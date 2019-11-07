@@ -5,24 +5,44 @@ $(function () {
      */
     'use strict';
     var data = {
-        labels: ["FG", "FGR", "DAS", "DPE", "FUC"],
+        labels: ["2015", "2016", "2017", "2018"],
         datasets: [{
-            label: 'Ocupantes',
-            data: [6408, 3671, 2570, 2375, 2127],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.4)',
-                'rgba(54, 162, 235, 0.4)',
-                'rgba(255, 206, 86, 0.4)',
-                'rgba(75, 192, 192, 0.4)',
-                'rgba(153, 102, 255, 0.4)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-            ],
+            label: 'Ocupantes-FG',
+            data: [6253, 6441, 6452, 5913],
+            backgroundColor: 'rgba(255, 99, 132, 0.4)',
+            borderColor: 'rgba(255,99,132,1)',
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'Ocupantes-FGR',
+            data: [4258, 4173, 3905, 3426],
+            backgroundColor: 'rgba(54, 162, 235, 0.4)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'Ocupantes-DAS',
+            data: [5083, 4634, 2791, 2347],
+            backgroundColor: 'rgba(255, 206, 86, 0.4)',
+            borderColor: 'rgba(255, 206, 86, 1)',
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'Ocupantes-FPE',
+            data: [0, 218, 1657, 2177],
+            backgroundColor: 'rgba(75, 192, 192, 0.4)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'Ocupantes-FUC',
+            data: [1766, 1906, 2005, 1933],
+            backgroundColor: 'rgba(153, 102, 255, 0.4)',
+            borderColor: 'rgba(153, 102, 255, 1)',
             borderWidth: 1,
             fill: false
         }]
@@ -113,11 +133,17 @@ $(function () {
         maintainAspectRatio: false
     };
     var areaData = {
-        labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        labels: ["Jan/15", "Fev/15", "Mar/15", "Abr/15", "Mai/15", "Jun/15", "Jul/15", "Ago/15", "Set/15", "Out/15", "Nov/15", "Dez/15",
+            "Jan/16", "Fev/16", "Mar/16", "Abr/16", "Mai/16", "Jun/16", "Jul/16", "Ago/16", "Set/16", "Out/16", "Nov/16", "Dez/16",
+            "Jan/17", "Fev/17", "Mar/17", "Abr/17", "Mai/17", "Jun/17", "Jul/17", "Ago/17", "Set/17", "Out/17", "Nov/17", "Dez/17",
+            "Jan/18", "Fev/18", "Mar/18", "Abr/18", "Mai/18", "Jun/18", "Jul/18", "Ago/18", "Set/18", "Out/18", "Nov/18", "Dez/18"],
         datasets: [
             {
                 label: 'Relações',
-                data: [22676, 22610, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
+                data: [23823, 23745, 23814, 23810, 23699, 23495, 23348, 23168, 23144, 23024, 22930, 22874,
+                    22898, 22812, 22897, 22658, 22560, 22534, 22548, 22502, 22477, 22422, 22367, 22422,
+                    22909, 23566, 23430, 22948, 23772, 23436, 23479, 23511, 23430, 23439, 23371, 23491,
+                    22676, 22610, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
                 backgroundColor: '#fe709677',
                 borderColor: '#fe7096',
                 borderWidth: 1,
