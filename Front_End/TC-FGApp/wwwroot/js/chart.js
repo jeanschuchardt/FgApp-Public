@@ -117,7 +117,7 @@ $(function () {
         datasets: [
             {
                 label: 'Relações',
-                data: [22676, 0, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
+                data: [22676, 22610, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
                 backgroundColor: '#fe709677',
                 borderColor: '#fe7096',
                 borderWidth: 1,
@@ -127,18 +127,18 @@ $(function () {
                 pointHitRadius: 25,
                 pointBackgroundColor: '#fe7096CC',
             },
-            {
-                label: 'Servidores',
-                data: [100161, 0, 99574, 99405, 99940, 98874, 100155, 100353, 99751, 98973, 98999, 99488],
-                backgroundColor: '#90caf977',
-                borderColor: '#90caf9',
-                borderWidth: 1,
-                fill: true,
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                pointHitRadius: 25,
-                pointBackgroundColor: '#90caf9CC',
-            }
+            //{
+            //    label: 'Servidores',
+            //    data: [100161, 0, 99574, 99405, 99940, 98874, 100155, 100353, 99751, 98973, 98999, 99488],
+            //    backgroundColor: '#90caf977',
+            //    borderColor: '#90caf9',
+            //    borderWidth: 1,
+            //    fill: true,
+            //    pointRadius: 5,
+            //    pointHoverRadius: 7,
+            //    pointHitRadius: 25,
+            //    pointBackgroundColor: '#90caf9CC',
+            //}
         ]
     };
 
@@ -147,13 +147,6 @@ $(function () {
             filler: {
                 propagate: true
             }
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
         },
         maintainAspectRatio: false
     }

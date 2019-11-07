@@ -171,6 +171,51 @@ namespace DataBaseFramework.DAO
             return list;
         }
 
+        public List<FiliadosFuncionariosDTO> GetAllFiliadosFuncionarios()
+        {
+            List<FiliadosFuncionariosDTO> list = new List<FiliadosFuncionariosDTO>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT 
+	                                        sigla,
+                                            func,
+                                            partido,
+                                            uf,
+                                            ano,
+                                            mes,
+	                                        COUNT(id_portal) AS quantidade
+                                        FROM resultados 
+                                        GROUP BY ano, mes, partido 
+                                        ORDER BY ano, mes ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new FiliadosFuncionariosDTO()
+                        {
+                            Sigla = reader.GetString("sigla"),
+                            Funcao = reader.GetString("func"),
+                            Partido = reader.GetString("partido"),
+                            UF = reader.GetString("uf"),
+                            Ano = reader.GetInt32("ano"),
+                            Mes = reader.GetInt32("mes"),
+                            Quantidade = reader.GetInt32("quantidade")
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        #region MetodosParaCamposDePesquisa
         public List<int> GetAllDataCargosDisponiveis()
         {
             List<int> list = new List<int>();
@@ -247,5 +292,6 @@ namespace DataBaseFramework.DAO
 
             return list;
         }
+#endregion
     }
 }

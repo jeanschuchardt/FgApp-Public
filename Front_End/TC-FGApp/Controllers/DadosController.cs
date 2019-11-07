@@ -28,9 +28,9 @@ namespace FGApp.Controllers
 
         public IActionResult TabelaServidores()
         {
-            List<FiliadosFuncionariosDTO> NumFuncionariosPorFuncao = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetNumFuncionariosPorFuncao();
+            List<FiliadosFuncionariosDTO> filiadosFuncionarios = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllFiliadosFuncionarios();
 
-            return View(NumFuncionariosPorFuncao);
+            return View(filiadosFuncionarios);
         }
     }
 }
