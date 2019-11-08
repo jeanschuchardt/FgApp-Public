@@ -50,6 +50,8 @@ namespace DataBaseFramework.DAO
                         });
                     }
                 }
+
+                conn.Close();
             }
 
             return list;
@@ -292,6 +294,6 @@ namespace DataBaseFramework.DAO
 
             return list;
         }
-#endregion
+        #endregion
     }
 }
