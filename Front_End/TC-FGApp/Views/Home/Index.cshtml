@@ -8,6 +8,10 @@
     .card-img-holder {
         cursor: pointer;
     }
+
+    .card .card-title {
+        text-align: center;
+    }
 </style>
 
 <div class="page-header">
@@ -25,7 +29,7 @@
                 <a href="/Graficos/ServidoresFiliados">
                     <h4 class="card-title">
                         Relação entre Servidores em Cargos Comissionados e Eleitores Filiados a Partidos Políticos
-                        <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover"  data-content="Demonstrativo temporal do conjunto resultante das associações." rel="popover" data-placement="right"></i>
+                        <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover" data-content="Demonstrativo temporal do conjunto resultante das associações." rel="popover" data-placement="right"></i>
                     </h4>
                 </a>
                 <canvas id="areaChart"></canvas>
@@ -35,6 +39,7 @@
 </div>
 
 @* TODO: Média da relação de servidores e relação com todos nossos registros *@
+@* Grafico com os valores totais anuais e ocupantes por anos transpostos *@
 
 <div class="row">
 
@@ -118,15 +123,15 @@
     <div class="col-lg-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body" style="max-height:350px;">
-                <h4 class="card-title">Top Funções</h4>
-                <canvas id="lineChart"></canvas>
+                <h4 class="card-title">Gasto Anual com Servidores</h4>
+                <canvas id="gastoChart"></canvas>
             </div>
         </div>
     </div>
     <div class="col-lg-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body" style="max-height:350px;">
-                <h4 class="card-title">Top Partidos</h4>
+                <h4 class="card-title">Relação Servidores em CC x Filiados </h4>
                 <canvas id="doughnutChart"></canvas>
             </div>
         </div>
