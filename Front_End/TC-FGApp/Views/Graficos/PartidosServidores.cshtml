@@ -4,6 +4,8 @@
     ViewData["Title"] = "Partidos Servidores";
 }
 
+@* COLOCAR uma label com o total de ocupantes e deixar o grafico com percentual por partido e os partidos que possuirem menos de 1% de representatividade entram em OUTROS *@
+
 <div class="page-header">
     <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -81,6 +83,12 @@
                 backgroundColor: @Html.Raw(Model.arrayCores),
             }],
         },
+        options: {
+            legend: {
+                display: true,
+                position: 'right'
+            },
+        }
     });
 
 

@@ -7,7 +7,7 @@ $(function () {
     var data = {
         labels: ["2015", "2016", "2017", "2018"],
         datasets: [{
-            label: 'Ocupantes-FG',
+            label: 'FG',
             data: [6253, 6441, 6452, 5913],
             backgroundColor: 'rgba(255, 99, 132, 0.4)',
             borderColor: 'rgba(255,99,132,1)',
@@ -15,7 +15,7 @@ $(function () {
             fill: false
         },
         {
-            label: 'Ocupantes-FGR',
+            label: 'FGR',
             data: [4258, 4173, 3905, 3426],
             backgroundColor: 'rgba(54, 162, 235, 0.4)',
             borderColor: 'rgba(54, 162, 235, 1)',
@@ -23,7 +23,7 @@ $(function () {
             fill: false
         },
         {
-            label: 'Ocupantes-DAS',
+            label: 'DAS',
             data: [5083, 4634, 2791, 2347],
             backgroundColor: 'rgba(255, 206, 86, 0.4)',
             borderColor: 'rgba(255, 206, 86, 1)',
@@ -31,7 +31,7 @@ $(function () {
             fill: false
         },
         {
-            label: 'Ocupantes-FPE',
+            label: 'FPE',
             data: [0, 218, 1657, 2177],
             backgroundColor: 'rgba(75, 192, 192, 0.4)',
             borderColor: 'rgba(75, 192, 192, 1)',
@@ -39,7 +39,7 @@ $(function () {
             fill: false
         },
         {
-            label: 'Ocupantes-FUC',
+            label: 'FUC',
             data: [1766, 1906, 2005, 1933],
             backgroundColor: 'rgba(153, 102, 255, 0.4)',
             borderColor: 'rgba(153, 102, 255, 1)',
@@ -87,7 +87,8 @@ $(function () {
             }]
         },
         legend: {
-            display: false
+            display: true,
+            position: 'right'
         },
         elements: {
             point: {
@@ -100,22 +101,13 @@ $(function () {
         datasets: [{
             data: [3224, 2811, 2055, 1678, 1408],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(54, 162, 235, 0.5)',
-                'rgba(255, 206, 86, 0.5)',
-                'rgba(75, 192, 192, 0.5)',
-                'rgba(153, 102, 255, 0.5)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
+                '#9A55FFAA',
+                '#887dffAA',
+                '#829cffAA',
+                '#8bb7ffAA',
+                '#a4cfffAA'
             ],
         }],
-
-        // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
             'PT',
             'PSDB',
@@ -129,6 +121,10 @@ $(function () {
         animation: {
             animateScale: true,
             animateRotate: true
+        },
+        legend: {
+            display: true,
+            position: 'right'
         },
         maintainAspectRatio: false
     };
@@ -144,14 +140,14 @@ $(function () {
                     22898, 22812, 22897, 22658, 22560, 22534, 22548, 22502, 22477, 22422, 22367, 22422,
                     22909, 23566, 23430, 22948, 23772, 23436, 23479, 23511, 23430, 23439, 23371, 23491,
                     22676, 22610, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
-                backgroundColor: '#fe709677',
-                borderColor: '#fe7096',
+                backgroundColor: '#94c2ff77',
+                borderColor: '#94c2ff',
                 borderWidth: 1,
                 fill: true,
                 pointRadius: 5,
                 pointHoverRadius: 7,
                 pointHitRadius: 25,
-                pointBackgroundColor: '#fe7096CC',
+                pointBackgroundColor: '#94c2ffCC',
             },
             //{
             //    label: 'Servidores',
@@ -173,6 +169,9 @@ $(function () {
             filler: {
                 propagate: true
             }
+        },
+        legend: {
+            display: false
         },
         maintainAspectRatio: false
     }
