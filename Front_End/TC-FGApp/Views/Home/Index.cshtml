@@ -38,9 +38,6 @@
     </div>
 </div>
 
-@* TODO: Média da relação de servidores e relação com todos nossos registros *@
-@* Grafico com os valores totais anuais e ocupantes por anos transpostos *@
-
 <div class="row">
 
     <div class="col-xl-3 col-md-6 stretch-card grid-margin">
@@ -74,10 +71,10 @@
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
-                    Total Servidores (12/2018)
+                    Total Servidores Públicos
                 </h4>
-                <h2 class="mb-5">99.488</h2>
-                <h6 class="card-text">+489 (11/2018)</h6>
+                <h2 class="mb-5">786.989</h2>
+                <h6 class="card-text">96.391 em Cargos Comissionados</h6>
             </div>
         </div>
     </div>
@@ -103,8 +100,8 @@
             <div class="card-body" style="max-height:350px;">
                 <a href="/Graficos/PartidosServidores">
                     <h4 class="card-title">
-                        Partidos Servidores (Top 5)
-                        <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover" data-content="TEXTO INFORMATIVO" rel="popover" data-placement="right"></i>
+                        Partidos Servidores 2018 (Top 5)
+                        <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover" data-content="Número de ocupantes relacionados dos cinco partidos com mais registros." rel="popover" data-placement="right"></i>
                     </h4>
                 </a>
                 <canvas id="pieChart"></canvas>
@@ -116,8 +113,8 @@
             <div class="card-body" style="max-height:350px;">
                 <a href="/Graficos/FuncoesOcupantes">
                     <h4 class="card-title">
-                        Funções x Ocupantes (Top 5)
-                        <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover" data-content="TEXTO INFORMATIVO" rel="popover" data-placement="right"></i>
+                        Funções x Ocupantes 2018 (Top 5)
+                        <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover" data-content="Número de ocupantes relacionados das cinco funções com mais registros." rel="popover" data-placement="right"></i>
                     </h4>
                 </a>
                 <canvas id="barChart"></canvas>
@@ -131,7 +128,7 @@
             <div class="card-body" style="max-height:350px;">
                 <h4 class="card-title">
                     Gasto Anual com Servidores
-                    <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover" data-content="TEXTO INFORMATIVO" rel="popover" data-placement="right"></i>
+                    <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover" data-content="Gasto total com servidores públicos em cada ano." rel="popover" data-placement="right"></i>
                 </h4>
                 <canvas id="gastoChart"></canvas>
             </div>
@@ -142,7 +139,7 @@
             <div class="card-body" style="max-height:350px;">
                 <h4 class="card-title">
                     Gasto por Função 2018
-                    <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover" data-content="TEXTO INFORMATIVO" rel="popover" data-placement="right"></i>
+                    <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle my-popover" data-content="Gasto total com servidores das cinco maiores funções no decorrer dos meses." rel="popover" data-placement="right"></i>
                 </h4>
                 <canvas id="gastoFuncaoChart"></canvas>
             </div>
@@ -167,6 +164,7 @@
 </div>
 <!-- content-wrapper ends -->
 
+<script type="text/javascript" src="~/js/chart.js?v=201911102010"></script>
 <script type="text/javascript">
     $(function () {
         $(".my-popover").popover({ trigger: "hover" });
