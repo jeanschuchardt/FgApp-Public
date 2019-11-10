@@ -3,6 +3,9 @@ $(function () {
      * -------
      * Data and config for chartjs
      */
+  
+
+
     'use strict';
     var data = {
         labels: ["2015", "2016", "2017", "2018"],
@@ -68,11 +71,11 @@ $(function () {
     };
 
     var gastoData = {
-        labels: ["2013", "2014", "2015", "2016", "2017", "2018", "2019"],
+        labels: [ "2014", "2015", "2016", "2017", "2018" ],
         datasets: [
             {
                 label: 'Total em R$',
-                data: [12198301475, 13826453355, 15132703247, 15945470761, 17486948219, 16621539654, 4188528584],
+                data: [ 13826453355, 15132703247, 15945470761, 17486948219, 16621539654 ],
                 backgroundColor: '#ffd50088',
                 borderColor: '#ffd500',
                 borderWidth: 1,
@@ -213,28 +216,16 @@ $(function () {
         labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
         datasets: [
             {
-                label: "2018",
-                data: [22676, 22610, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
-                backgroundColor: '#9a55ff55',
-                borderColor: '#9a55ff',
+                label: "2015",
+                data: [23823, 23745, 23814, 23810, 23699, 23495, 23348, 23168, 23144, 23024, 22930, 22874],
+                backgroundColor: '#fe709655',
+                borderColor: '#fe7096',
                 borderWidth: 2,
                 fill: false,
                 pointRadius: 5,
                 pointHoverRadius: 7,
                 pointHitRadius: 25,
-                pointBackgroundColor: '#9a55ffCC',
-            },
-            {
-                label: "2017",
-                data: [22909, 23566, 23430, 22948, 23772, 23436, 23479, 23511, 23430, 23439, 23371, 23491],
-                backgroundColor: '#07cdae55',
-                borderColor: '#07cdae',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                pointHitRadius: 25,
-                pointBackgroundColor: '#07cdaeCC',
+                pointBackgroundColor: '#fe7096CC',
             },
             {
                 label: "2016",
@@ -249,17 +240,33 @@ $(function () {
                 pointBackgroundColor: '#047edfCC',
             },
             {
-                label: "2015",
-                data: [23823, 23745, 23814, 23810, 23699, 23495, 23348, 23168, 23144, 23024, 22930, 22874],
-                backgroundColor: '#fe709655',
-                borderColor: '#fe7096',
+                label: "2017",
+                data: [22909, 23566, 23430, 22948, 23772, 23436, 23479, 23511, 23430, 23439, 23371, 23491],
+                backgroundColor: '#07cdae55',
+                borderColor: '#07cdae',
                 borderWidth: 2,
                 fill: false,
                 pointRadius: 5,
                 pointHoverRadius: 7,
                 pointHitRadius: 25,
-                pointBackgroundColor: '#fe7096CC',
-            }
+                pointBackgroundColor: '#07cdaeCC',
+            },
+            {
+
+                label: "2018",
+                data: [22676, 22610, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
+                backgroundColor: '#9a55ff55',
+                borderColor: '#9a55ff',
+                borderWidth: 2,
+                fill: true,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointHitRadius: 25,
+                pointBackgroundColor: '#9a55ffCC',
+            },
+            
+           
+        
         ]
     };
 
@@ -273,7 +280,21 @@ $(function () {
             display: false
         },
         maintainAspectRatio: false
-    }
+    };
+
+    var transpostoOptions2 = {
+        plugins: {
+            filler: {
+                propagate: true
+            }
+        },
+        legend: {
+            display: true,
+            position: 'bottom'
+        },
+        maintainAspectRatio: false,
+        tooltipTemplate: function (label) { return '$' + label.value.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+    };
 
     // Get context with jQuery - using jQuery's .get() method.
     if ($("#barChart").length) {
@@ -327,7 +348,7 @@ $(function () {
         var areaChart = new Chart(areaChartCanvas, {
             type: 'line',
             data: transpostoData,
-            options: transpostoOptions
+            options: transpostoOptions2
         });
     }
 });
