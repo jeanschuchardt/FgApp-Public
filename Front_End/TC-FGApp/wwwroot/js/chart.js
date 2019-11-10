@@ -181,18 +181,6 @@ $(function () {
                 pointHitRadius: 25,
                 pointBackgroundColor: '#94c2ffCC',
             },
-            //{
-            //    label: 'Servidores',
-            //    data: [100161, 0, 99574, 99405, 99940, 98874, 100155, 100353, 99751, 98973, 98999, 99488],
-            //    backgroundColor: '#90caf977',
-            //    borderColor: '#90caf9',
-            //    borderWidth: 1,
-            //    fill: true,
-            //    pointRadius: 5,
-            //    pointHoverRadius: 7,
-            //    pointHitRadius: 25,
-            //    pointBackgroundColor: '#90caf9CC',
-            //}
         ]
     };
 
@@ -290,7 +278,17 @@ $(function () {
             }
         },
         legend: {
-            display: false
+            display: true,
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    userCallback: function (value, index, values) {
+                        return NumeroFormatado(value);
+                    }
+                }
+            }]
         },
         tooltips: {
             callbacks: {
@@ -301,20 +299,6 @@ $(function () {
             }
         },
         maintainAspectRatio: false
-    };
-
-    var transpostoOptions2 = {
-        plugins: {
-            filler: {
-                propagate: true
-            }
-        },
-        legend: {
-            display: true,
-            position: 'bottom'
-        },
-        maintainAspectRatio: false,
-        tooltipTemplate: function (label) { return '$' + label.value.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
     };
 
     // Get context with jQuery - using jQuery's .get() method.
@@ -360,7 +344,7 @@ $(function () {
         var areaChart = new Chart(areaChartCanvas, {
             type: 'line',
             data: transpostoData,
-            options: transpostoOptions2
+            options: transpostoOptions
         });
     }
 
