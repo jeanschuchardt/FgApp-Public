@@ -51,9 +51,20 @@ $(function () {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    userCallback: function (value, index, values) {
+                        return NumeroFormatado(value);
+                    }
                 }
             }]
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, chart) {
+                    var label = tooltipItem.yLabel;
+                    return NumeroFormatado(label);
+                }
+            }
         },
         legend: {
             display: true,
@@ -68,11 +79,11 @@ $(function () {
     };
 
     var gastoData = {
-        labels: ["2013", "2014", "2015", "2016", "2017", "2018", "2019"],
+        labels: ["2015", "2016", "2017", "2018", "2019"],
         datasets: [
             {
                 label: 'Total em R$',
-                data: [12198301475, 13826453355, 15132703247, 15945470761, 17486948219, 16621539654, 4188528584],
+                data: [15132703247, 15945470761, 17486948219, 16621539654, 4188528584],
                 backgroundColor: '#ffd50088',
                 borderColor: '#ffd500',
                 borderWidth: 1,
@@ -88,9 +99,20 @@ $(function () {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    userCallback: function (value, index, values) {
+                        return 'R$ ' + NumeroFormatado(value);
+                    }
                 }
             }]
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, chart) {
+                    var label = tooltipItem.yLabel;
+                    return 'R$ ' + NumeroFormatado(label);
+                }
+            }
         },
         legend: {
             display: false
@@ -123,32 +145,6 @@ $(function () {
         ]
     };
     var PieOptions = {
-        responsive: true,
-        animation: {
-            animateScale: true,
-            animateRotate: true
-        },
-        legend: {
-            display: true,
-            position: 'right'
-        },
-        maintainAspectRatio: false
-    };
-
-    var doughnutPieData = {
-        datasets: [{
-            data: [98057, 22492],
-            backgroundColor: [
-                '#22FF2277',
-                '#2222FF77'
-            ],
-        }],
-        labels: [
-            'Servidores',
-            'Relação'
-        ]
-    };
-    var doughnutPieOptions = {
         responsive: true,
         animation: {
             animateScale: true,
@@ -203,8 +199,25 @@ $(function () {
                 propagate: true
             }
         },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    userCallback: function (value, index, values) {
+                        return NumeroFormatado(value);
+                    }
+                }
+            }]
+        },
         legend: {
             display: false
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, chart) {
+                    var label = tooltipItem.yLabel;
+                    return NumeroFormatado(label);
+                }
+            }
         },
         maintainAspectRatio: false
     }
@@ -272,6 +285,14 @@ $(function () {
         legend: {
             display: false
         },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, chart) {
+                    var label = tooltipItem.yLabel;
+                    return NumeroFormatado(label);
+                }
+            }
+        },
         maintainAspectRatio: false
     }
 
@@ -292,15 +313,6 @@ $(function () {
             type: 'bar',
             data: gastoData,
             options: gastoOptions
-        });
-    }
-
-    if ($("#doughnutChart").length) {
-        var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
-        var doughnutChart = new Chart(doughnutChartCanvas, {
-            type: 'doughnut',
-            data: doughnutPieData,
-            options: doughnutPieOptions
         });
     }
 
@@ -330,4 +342,14 @@ $(function () {
             options: transpostoOptions
         });
     }
+
+
+    function NumeroFormatado(value) {
+        value = value.toString();
+        value = value.split(/(?=(?:...)*$)/);
+
+        value = value.join('.');
+        return value;
+    }
+
 });
