@@ -128,15 +128,62 @@ $(function () {
         maintainAspectRatio: false
     };
 
+    var gastoFuncaoData = {
+        labels: ["2014", "2015", "2016", "2017", "2018"],
+        datasets: [
+            {
+                label: 'Total em R$',
+                data: [13826453355, 15132703247, 15945470761, 17486948219, 16621539654],
+                backgroundColor: '#ffd50088',
+                borderColor: '#ffd500',
+                borderWidth: 1,
+                fill: true,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointHitRadius: 25,
+                pointBackgroundColor: '#94c2ffCC',
+            },
+        ]
+    };
+    var gastoFuncaoOptions = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    userCallback: function (value, index, values) {
+                        return 'R$ ' + NumeroFormatado(value);
+                    }
+                }
+            }]
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, chart) {
+                    var label = tooltipItem.yLabel;
+                    return 'R$ ' + NumeroFormatado(label);
+                }
+            }
+        },
+        legend: {
+            display: false
+        },
+        elements: {
+            point: {
+                radius: 0
+            }
+        },
+        maintainAspectRatio: false
+    };
+
     var PieData = {
         datasets: [{
             data: [3224, 2811, 2055, 1678, 1408],
             backgroundColor: [
-                '#9A55FFAA',
-                '#887dffAA',
-                '#829cffAA',
-                '#8bb7ffAA',
-                '#a4cfffAA'
+                '#AA44FFCC',
+                '#9966FFCC',
+                '#8895FFCC',
+                '#A9B7FFCC',
+                '#B4DFFFCC'
             ],
         }],
         labels: [
@@ -318,6 +365,15 @@ $(function () {
             type: 'bar',
             data: gastoData,
             options: gastoOptions
+        });
+    }
+
+    if ($("#gastoFuncaoChart").length) {
+        var lineChartCanvas = $("#gastoFuncaoChart").get(0).getContext("2d");
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'bar',
+            data: gastoFuncaoData,
+            options: gastoFuncaoOptions
         });
     }
 
