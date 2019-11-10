@@ -3,7 +3,7 @@ $(function () {
      * -------
      * Data and config for chartjs
      */
-  
+
 
 
     'use strict';
@@ -82,11 +82,11 @@ $(function () {
     };
 
     var gastoData = {
-        labels: [ "2014", "2015", "2016", "2017", "2018" ],
+        labels: ["2014", "2015", "2016", "2017", "2018"],
         datasets: [
             {
                 label: 'Total em R$',
-                data: [ 13826453355, 15132703247, 15945470761, 17486948219, 16621539654 ],
+                data: [13826453355, 15132703247, 15945470761, 17486948219, 16621539654],
                 backgroundColor: '#ffd50088',
                 borderColor: '#ffd500',
                 borderWidth: 1,
@@ -129,20 +129,41 @@ $(function () {
     };
 
     var gastoFuncaoData = {
-        labels: ["2014", "2015", "2016", "2017", "2018"],
+        labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
         datasets: [
             {
-                label: 'Total em R$',
-                data: [13826453355, 15132703247, 15945470761, 17486948219, 16621539654],
-                backgroundColor: '#ffd50088',
-                borderColor: '#ffd500',
-                borderWidth: 1,
-                fill: true,
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                pointHitRadius: 25,
-                pointBackgroundColor: '#94c2ffCC',
+                type: 'bar',
+                label: 'FG',
+                backgroundColor: "rgba(255, 99, 132, 0.6)",
+                data: [270946978, 265270477, 259593976, 256742847, 259584956, 316381087, 258843915, 262296307, 261617943, 258703222, 494129128, 360796812]
+            }, {
+                type: 'bar',
+                label: 'FGR',
+                backgroundColor: "rgba(54, 162, 235, 0.6)",
+                data: [217595955, 205906630, 194217306, 193678954, 193456714, 223170396, 195257368, 195111004, 197300146, 193754003, 369077940, 261119501]
+            }, {
+                type: 'bar',
+                label: 'DAS',
+                backgroundColor: "rgba(255, 206, 86, 0.6)",
+                data: [165821951, 161413654, 157005358, 156602871, 157233422, 196020591, 158591939, 159408100, 158890981, 157506191, 297741730, 190817801]
             },
+            {
+                type: 'bar',
+                label: 'FPE',
+                backgroundColor: "rgba(75, 192, 192, 0.6)",
+                data: [214702540, 208528240, 202353940, 200779779, 201552278, 242259718, 202069238, 200935927, 202003550, 200684823, 387089472, 263394350]
+            },
+            {
+                type: 'bar',
+                label: 'FUC',
+                backgroundColor: "rgba(153, 102, 255, 0.6)",
+                data: [166209958, 163381419, 160552880, 160582200, 163134653, 207167840, 162951731, 167395152, 168056385, 166571367, 325078790, 256789559]
+            }, {
+                type: 'bar',
+                label: 'OUTROS',
+                backgroundColor: "rgba(45, 45, 255, 0.6)",
+                data: [379429945, 366178996, 352928047, 358232906, 349238889, 419684998, 351556554, 349844227, 340299158, 343789195, 639976522, 465225655]
+            }
         ]
     };
     var gastoFuncaoOptions = {
@@ -151,21 +172,26 @@ $(function () {
                 ticks: {
                     beginAtZero: true,
                     userCallback: function (value, index, values) {
-                        return 'R$ ' + NumeroFormatado(value);
+                        return 'R$' + NumeroFormatado(value);
                     }
-                }
+                },
+                stacked: true
+            }],
+            xAxes: [{
+                stacked: true
             }]
         },
         tooltips: {
             callbacks: {
                 label: function (tooltipItem, chart) {
                     var label = tooltipItem.yLabel;
-                    return 'R$ ' + NumeroFormatado(label);
+                    return chart.datasets[tooltipItem.datasetIndex].label + ': R$' + NumeroFormatado(label);
                 }
             }
         },
         legend: {
-            display: false
+            display: true,
+            position: 'right'
         },
         elements: {
             point: {
@@ -312,9 +338,9 @@ $(function () {
                 pointHitRadius: 25,
                 pointBackgroundColor: '#9a55ffCC',
             },
-            
-           
-        
+
+
+
         ]
     };
 
