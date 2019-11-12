@@ -42,7 +42,7 @@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body card-grafico">
                 <canvas id="myAreaChart" style="width: 100%; min-height: 370px; max-height: 580px;"></canvas>
             </div>
         </div>
@@ -59,26 +59,26 @@
                 {
                     label: 'Relações',
                     data: @Html.Raw(Model.arrayTotalResultados),
-                    backgroundColor: '#fe709677',
-                    borderColor: '#fe7096',
+                    backgroundColor: 'rgba(254, 112, 150, 0.5)',
+                    borderColor: 'rgba(254, 112, 150, 1)',
                     borderWidth: 1,
                     fill: true,
                     pointRadius: 5,
                     pointHoverRadius: 7,
                     pointHitRadius: 25,
-                    pointBackgroundColor: '#fe7096CC',
+                    pointBackgroundColor: 'rgba(254, 112, 150, 0.8)',
                 },
                 {
                     label: 'Servidores',
                     data: @Html.Raw(Model.arrayTotalServidores),
-                    backgroundColor: '#90caf977',
-                    borderColor: '#90caf9',
+                    backgroundColor: 'rgba(144, 202, 249, 0.5)',
+                    borderColor: 'rgba(144, 202, 249, 1)',
                     borderWidth: 1,
                     fill: true,
                     pointRadius: 5,
                     pointHoverRadius: 7,
                     pointHitRadius: 25,
-                    pointBackgroundColor: '#90caf9CC',
+                    pointBackgroundColor: 'rgba(144, 202, 249, 0.8)',
                 }
             ]
         },

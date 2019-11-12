@@ -9,8 +9,8 @@ namespace FGApp.Util
         public static string ColorGenerator()
         {
             Random random = new Random();
-            string color = String.Format("#{0:X6}", random.Next(0x1000000));
-            color = color + "AA";
+            string color = String.Format("rgba(" + random.Next(255).ToString() + ", " + random.Next(255).ToString() + ", " + random.Next(255).ToString() + ", ");
+            color = color + "0.7)";
 
             return color;
         }

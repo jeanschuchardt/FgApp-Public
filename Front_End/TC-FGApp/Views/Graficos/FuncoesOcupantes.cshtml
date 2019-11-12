@@ -21,8 +21,8 @@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body">
-                <canvas id="grafico" height="1500" width="900"></canvas>
+            <div class="card-body card-grafico">
+                <canvas id="grafico" style="width: 100%; height: 1000px; max-height: 1000px;"></canvas>
             </div>
         </div>
     </div>
@@ -39,8 +39,8 @@
             @(Json.Serialize(Model.Select(i => i.Funcao).ToArray())),
             datasets: [{
                 label: "Total Cargos",
-                backgroundColor: "#b66dffbb",
-                borderColor: "#b66dff",
+                backgroundColor: "rgba(182, 109, 255, 0.8)",
+                borderColor: "rgba(182, 109, 255, 1)",
                 borderWidth: 1,
                 data:
                 @(Json.Serialize(Model.Select(i => i.Quantidade).ToArray())),
@@ -63,7 +63,7 @@
                 datalabels: {
                     align: 'end',
                     anchor: 'end',
-                    backgroundColor: "#b66dff",
+                    backgroundColor: "rgba(182, 109, 255, 1)",
                     borderRadius: 4,
                     color: 'white',
                     formatter: Math.round

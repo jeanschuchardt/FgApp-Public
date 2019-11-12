@@ -21,23 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.bootstrap.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.bootstrap.min.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.bootstrap4.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.bootstrap4.min.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.foundation.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.foundation.min.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.jqueryui.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.jqueryui.min.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.semanticui.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\dataTables.semanticui.min.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\jquery.dataTables.js" />
-    <None Include="wwwroot\lib\datatables\DataTables-1.10.20\js\jquery.dataTables.min.js" />
-    <None Include="wwwroot\lib\datatables\datatables.js" />
-    <None Include="wwwroot\lib\datatables\datatables.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DataBaseFramework\DataBaseFramework.csproj" />
   </ItemGroup>
 
