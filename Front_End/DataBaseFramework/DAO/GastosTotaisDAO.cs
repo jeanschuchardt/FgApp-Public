@@ -51,6 +51,43 @@ namespace DataBaseFramework.DAO
             return list;
         }
 
+        public List<GastosTotaisDTO> GetAllGastos()
+        {
+            List<GastosTotaisDTO> list = new List<GastosTotaisDTO>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT 
+	                                        ANO,
+	                                        MES,
+	                                        SIGLA_FUNCAO,
+	                                        TOTAL_REMUNERACAO
+                                        FROM gastostotais
+                                        ORDER BY ANO, MES ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new GastosTotaisDTO()
+                        {
+                            Ano = reader.GetInt32("ANO"),
+                            Mes = reader.GetInt32("MES"),
+                            SiglaFuncao = reader.GetString("SIGLA_FUNCAO"),
+                            TotalRemuneracao = reader.GetDouble("TOTAL_REMUNERACAO")
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
         public List<int> GetAllDataGastosDisponiveis()
         {
             List<int> list = new List<int>();

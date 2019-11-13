@@ -1,0 +1,63 @@
+﻿@model List<DataBaseFramework.DataModel.GastosTotaisDTO>
+
+@{
+    ViewData["Title"] = "Tabela Gastos";
+}
+
+<link rel="stylesheet" href="~/lib/DataTables/datatables.css">
+
+<script type="text/javascript" src="~/lib/DataTables/datatables.js"></script>
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+            <i class="mdi mdi-table-large"></i>
+        </span> Tabela Gastos
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tabela Gastos</li>
+        </ol>
+    </nav>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body card-grafico">
+                <table id="tableResultados" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Ano </th>
+                            <th> Mês </th>
+                            <th> Sigla Função </th>
+                            <th> Total Remuneração </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Ano</td>
+                                <td>@item.MesFormatado</td>
+                                <td>@item.SiglaFuncao</td>
+                                <td>@item.TotalRemuneracaoFormata</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#tableResultados").DataTable({
+        responsive: true,
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+        }
+    });
+</script>

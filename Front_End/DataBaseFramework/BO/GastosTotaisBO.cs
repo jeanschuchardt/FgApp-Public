@@ -22,5 +22,10 @@ namespace DataBaseFramework.BO
         {
             return new GastosTotaisDAO(ConnectionString).GetAllDataGastosDisponiveis();
         }
+
+        public List<GastosTotaisDTO> GetAllGastos()
+        {
+            return new GastosTotaisDAO(ConnectionString).GetAllGastos();
+        }
     }
 }

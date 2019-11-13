@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DataBaseFramework.BO;
+﻿using DataBaseFramework.BO;
 using DataBaseFramework.Context;
 using DataBaseFramework.DataModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
 
 namespace FGApp.Controllers
 {
@@ -31,6 +29,13 @@ namespace FGApp.Controllers
             List<FiliadosFuncionariosDTO> filiadosFuncionarios = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllFiliadosFuncionarios();
 
             return View(filiadosFuncionarios);
+        }
+
+        public IActionResult TabelaGastos()
+        {
+            List<GastosTotaisDTO> gastosTotais = new GastosTotaisBO(_connectionStrings.DefaultConnection).GetAllGastos();
+
+            return View(gastosTotais);
         }
     }
 }
