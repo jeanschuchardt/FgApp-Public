@@ -2,7 +2,7 @@
 
 namespace FGApp.Models
 {
-    public class ServidoresFiliadosVM
+    public class GastosTotaisVM
     {
         public SelectList selecaoAno { get; set; }
 
@@ -10,8 +10,6 @@ namespace FGApp.Models
 
         public string arrayMeses { get; set; }
 
-        public string arrayTotalServidores { get; set; }
-
-        public string arrayTotalResultados { get; set; }
+        public string arrayTotalGastos { get; set; }
     }
 }

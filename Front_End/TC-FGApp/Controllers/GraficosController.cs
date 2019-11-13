@@ -177,37 +177,32 @@ namespace TC_FGApp.Controllers
         [HttpGet]
         public IActionResult GastosTotais()
         {
-            ServidoresFiliadosVM servidoresFiliadosVM = new ServidoresFiliadosVM();
+            GastosTotaisVM gastosTotaisVM = new GastosTotaisVM();
 
-            List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
+            List<int> listaAnos = new GastosTotaisBO(_connectionStrings.DefaultConnection).GetAllDataGastosDisponiveis();
 
-            servidoresFiliadosVM.selecaoAno = new SelectList(listaAnos);
-            servidoresFiliadosVM.anoSelecionado = 2015;
+            gastosTotaisVM.selecaoAno = new SelectList(listaAnos);
+            gastosTotaisVM.anoSelecionado = 2015;
 
-            List<NumerosAnalisesDTO> listaRelacoes = new NumerosAnalisesBO(_connectionStrings.DefaultConnection).GetRelacaoPorAno(new NumerosAnalisesDTO() { Ano = 2015 });
+            List<GastosTotaisDTO> listaGastos = new GastosTotaisBO(_connectionStrings.DefaultConnection).GetRelacaoPorAno(new GastosTotaisDTO() { Ano = 2015 });
 
-            servidoresFiliadosVM.arrayTotalResultados = JsonConvert.SerializeObject(listaRelacoes.Select(x => x.TotalResultados));
-            servidoresFiliadosVM.arrayTotalServidores = JsonConvert.SerializeObject(listaRelacoes.Select(x => x.TotalServidores));
+            gastosTotaisVM.arrayTotalGastos = JsonConvert.SerializeObject(listaGastos.Select(x => x.TotalRemuneracao));
 
-            return View(servidoresFiliadosVM);
+            return View(gastosTotaisVM);
         }
 
-        [HttpGet]
-        public IActionResult GastosFuncao()
+        [HttpPost]
+        public IActionResult GastosTotais(GastosTotaisVM gastosTotaisVM)
         {
-            ServidoresFiliadosVM servidoresFiliadosVM = new ServidoresFiliadosVM();
+            List<int> listaAnos = new GastosTotaisBO(_connectionStrings.DefaultConnection).GetAllDataGastosDisponiveis();
 
-            List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
+            gastosTotaisVM.selecaoAno = new SelectList(listaAnos);
 
-            servidoresFiliadosVM.selecaoAno = new SelectList(listaAnos);
-            servidoresFiliadosVM.anoSelecionado = 2015;
+            List<GastosTotaisDTO> listaGastos = new GastosTotaisBO(_connectionStrings.DefaultConnection).GetRelacaoPorAno(new GastosTotaisDTO() { Ano = gastosTotaisVM.anoSelecionado });
 
-            List<NumerosAnalisesDTO> listaRelacoes = new NumerosAnalisesBO(_connectionStrings.DefaultConnection).GetRelacaoPorAno(new NumerosAnalisesDTO() { Ano = 2015 });
+            gastosTotaisVM.arrayTotalGastos = JsonConvert.SerializeObject(listaGastos.Select(x => x.TotalRemuneracao));
 
-            servidoresFiliadosVM.arrayTotalResultados = JsonConvert.SerializeObject(listaRelacoes.Select(x => x.TotalResultados));
-            servidoresFiliadosVM.arrayTotalServidores = JsonConvert.SerializeObject(listaRelacoes.Select(x => x.TotalServidores));
-
-            return View(servidoresFiliadosVM);
+            return View(gastosTotaisVM);
         }
     }
 }

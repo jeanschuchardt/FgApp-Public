@@ -90,11 +90,6 @@ $(function () {
                 backgroundColor: 'rgba(255, 213, 0, 0.5)',
                 borderColor: 'rgba(255, 213, 0, 1)',
                 borderWidth: 1,
-                fill: true,
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                pointHitRadius: 25,
-                pointBackgroundColor: 'rgba(148, 194, 255, 0.8)',
             },
         ]
     };
@@ -428,15 +423,6 @@ $(function () {
             data: transpostoData,
             options: transpostoOptions
         });
-    }
-
-
-    function NumeroFormatado(value) {
-        value = value.toString();
-        value = value.split(/(?=(?:...)*$)/);
-
-        value = value.join('.');
-        return value;
     }
 
 });
