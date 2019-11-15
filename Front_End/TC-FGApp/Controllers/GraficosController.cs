@@ -22,11 +22,37 @@ namespace TC_FGApp.Controllers
             _connectionStrings = connectionStrings?.Value ?? throw new ArgumentNullException(nameof(connectionStrings));
         }
 
+        [HttpGet]
         public IActionResult FuncoesOcupantes()
         {
-            List<FiliadosFuncionariosDTO> NumFuncionariosPorFuncao = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetNumFuncionariosPorFuncao();
+            FuncoesOcupantesVM funcoesOcupantesVM = new FuncoesOcupantesVM();
 
-            return View(NumFuncionariosPorFuncao);
+            List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
+
+            funcoesOcupantesVM.selecaoAno = new SelectList(listaAnos);
+            funcoesOcupantesVM.anoSelecionado = 2015;
+            funcoesOcupantesVM.mesSelecionado = 1;
+
+            List<FiliadosFuncionariosDTO> listaFuncoesServidores = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetNumFuncionariosPorFuncao(new FiliadosFuncionariosDTO() { Ano = funcoesOcupantesVM.anoSelecionado, Mes = funcoesOcupantesVM.mesSelecionado });
+
+            funcoesOcupantesVM.arrayFuncoes = JsonConvert.SerializeObject(listaFuncoesServidores.Select(x => x.Funcao).ToArray());
+            funcoesOcupantesVM.arrayQuantidade = JsonConvert.SerializeObject(listaFuncoesServidores.Select(x => x.Quantidade).ToArray());
+
+            return View(funcoesOcupantesVM);
+        }
+
+        [HttpPost]
+        public IActionResult FuncoesOcupantes(FuncoesOcupantesVM funcoesOcupantesVM)
+        {
+            List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
+            funcoesOcupantesVM.selecaoAno = new SelectList(listaAnos);
+
+            List<FiliadosFuncionariosDTO> listaFuncoesServidores = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetNumFuncionariosPorFuncao(new FiliadosFuncionariosDTO() { Ano = funcoesOcupantesVM.anoSelecionado, Mes = funcoesOcupantesVM.mesSelecionado });
+
+            funcoesOcupantesVM.arrayFuncoes = JsonConvert.SerializeObject(listaFuncoesServidores.Select(x => x.Funcao).ToArray());
+            funcoesOcupantesVM.arrayQuantidade = JsonConvert.SerializeObject(listaFuncoesServidores.Select(x => x.Quantidade).ToArray());
+
+            return View(funcoesOcupantesVM);
         }
 
         [HttpGet]

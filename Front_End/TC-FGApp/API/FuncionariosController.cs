@@ -21,9 +21,9 @@ namespace FGApp.API
         }
 
         [HttpGet]
-        public JsonResult GetAllFuncionarios(int ano)
+        public JsonResult GetAllFuncionarios(int ano, int mes)
         {
-            List<FiliadosFuncionariosDTO> listaFuncionarios = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetNumFuncionariosPorFuncao();
+            List<FiliadosFuncionariosDTO> listaFuncionarios = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetNumFuncionariosPorFuncao(new FiliadosFuncionariosDTO() { Ano = ano, Mes = mes }); ;
 
             if (listaFuncionarios.Count > 0)
             {

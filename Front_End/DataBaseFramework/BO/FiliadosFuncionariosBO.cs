@@ -13,9 +13,9 @@ namespace DataBaseFramework.BO
             this.ConnectionString = connectionString;
         }
 
-        public List<FiliadosFuncionariosDTO> GetNumFuncionariosPorFuncao()
+        public List<FiliadosFuncionariosDTO> GetNumFuncionariosPorFuncao(FiliadosFuncionariosDTO filiadosFuncionarios)
         {
-            return new FiliadosFuncionariosDAO(ConnectionString).GetNumFuncionariosPorFuncao();
+            return new FiliadosFuncionariosDAO(ConnectionString).GetNumFuncionariosPorFuncao(filiadosFuncionarios);
         }
 
         public List<FiliadosFuncionariosDTO> GetDistribuicaoFuncoes(FiliadosFuncionariosDTO filiadosFuncionarios)

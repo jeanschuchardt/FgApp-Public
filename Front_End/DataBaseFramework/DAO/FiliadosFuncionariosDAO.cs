@@ -14,7 +14,7 @@ namespace DataBaseFramework.DAO
             this.ConnectionString = connectionString;
         }
 
-        public List<FiliadosFuncionariosDTO> GetNumFuncionariosPorFuncao()
+        public List<FiliadosFuncionariosDTO> GetNumFuncionariosPorFuncao(FiliadosFuncionariosDTO filiadosFuncionarios)
         {
             List<FiliadosFuncionariosDTO> list = new List<FiliadosFuncionariosDTO>();
 
@@ -22,17 +22,17 @@ namespace DataBaseFramework.DAO
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(@"SELECT 
-                                                        ano, 
-                                                        mes,
-                                                        uf,
-                                                        partido,
                                                         sigla,
                                                         func,
                                                         COUNT(id_portal) AS quantidade
                                                     FROM resultados 
-                                                    WHERE ano = 2018 
-                                                    AND mes = 12
-                                                    GROUP BY sigla", conn);
+                                                    WHERE ano = @pAno 
+                                                    AND mes = @pMes
+                                                    GROUP BY sigla
+                                                    ORDER BY quantidade DESC ", conn);
+
+                cmd.Parameters.AddWithValue("@pMes", filiadosFuncionarios.Mes);
+                cmd.Parameters.AddWithValue("@pAno", filiadosFuncionarios.Ano);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -40,10 +40,6 @@ namespace DataBaseFramework.DAO
                     {
                         list.Add(new FiliadosFuncionariosDTO()
                         {
-                            Ano = reader.GetInt32("ano"),
-                            Mes = reader.GetInt32("mes"),
-                            UF = reader.GetString("uf"),
-                            Partido = reader.GetString("partido"),
                             Sigla = reader.GetString("sigla"),
                             Funcao = reader.GetString("func"),
                             Quantidade = reader.GetInt32("quantidade")
