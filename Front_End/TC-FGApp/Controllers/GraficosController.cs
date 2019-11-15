@@ -22,13 +22,6 @@ namespace TC_FGApp.Controllers
             _connectionStrings = connectionStrings?.Value ?? throw new ArgumentNullException(nameof(connectionStrings));
         }
 
-        public IActionResult Index()
-        {
-            List<FiliadosFuncionariosDTO> funcionarioPublicos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetNumFuncionariosPorFuncao();
-
-            return View();
-        }
-
         public IActionResult FuncoesOcupantes()
         {
             List<FiliadosFuncionariosDTO> NumFuncionariosPorFuncao = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetNumFuncionariosPorFuncao();
