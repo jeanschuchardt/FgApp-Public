@@ -34,6 +34,14 @@ namespace DataBaseFramework.DataModel
 
         public int Quantidade { get; set; }
 
+        public string AnoMesFormatado
+        {
+            get
+            {
+                return Mes + "/" + Ano;
+            }
+        }
+
         public string MesFormatado
         {
             get

@@ -137,13 +137,14 @@ namespace DataBaseFramework.DAO
                 StringBuilder stringBuilder = new StringBuilder();
 
                 stringBuilder.Append(@" SELECT 
-                                            ano, 
+                                            ano,
+                                            mes,
                                             sigla, 
                                             COUNT(id_portal) AS quantidade
 	                                    FROM resultados 
 	                                    WHERE uf = @pUf
 	                                    AND sigla = @pSigla
-	                                    GROUP BY ano 
+	                                    GROUP BY mes, ano 
 	                                    ORDER BY ano ");
 
                 conn.Open();

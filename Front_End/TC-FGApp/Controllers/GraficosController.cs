@@ -137,7 +137,7 @@ namespace TC_FGApp.Controllers
 
             List<FiliadosFuncionariosDTO> listaPartidoServidores = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetServidoresPorAno(new FiliadosFuncionariosDTO() { UF = evolucaoCargosVM.estadoSelecionado, Sigla = evolucaoCargosVM.cargoSelecionado });
 
-            evolucaoCargosVM.arrayDataCargos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Ano));
+            evolucaoCargosVM.arrayDataCargos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.AnoMesFormatado));
             evolucaoCargosVM.arrayTotalServidores = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Quantidade));
 
             return View(evolucaoCargosVM);
@@ -154,7 +154,7 @@ namespace TC_FGApp.Controllers
 
             List<FiliadosFuncionariosDTO> listaPartidoServidores = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetServidoresPorAno(new FiliadosFuncionariosDTO() { UF = evolucaoCargosVM.estadoSelecionado, Sigla = evolucaoCargosVM.cargoSelecionado });
 
-            evolucaoCargosVM.arrayDataCargos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Ano));
+            evolucaoCargosVM.arrayDataCargos = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.AnoMesFormatado));
             evolucaoCargosVM.arrayTotalServidores = JsonConvert.SerializeObject(listaPartidoServidores.Select(x => x.Quantidade));
 
             return View(evolucaoCargosVM);

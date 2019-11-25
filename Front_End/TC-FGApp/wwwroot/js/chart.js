@@ -1,12 +1,5 @@
 $(function () {
-    /* ChartJS
-     * -------
-     * Data and config for chartjs
-     */
 
-
-
-    'use strict';
     var data = {
         labels: ["2015", "2016", "2017", "2018"],
         datasets: [{
@@ -50,6 +43,7 @@ $(function () {
             fill: false
         }]
     };
+
     var options = {
         scales: {
             yAxes: [{
@@ -81,6 +75,7 @@ $(function () {
         maintainAspectRatio: false
     };
 
+
     var gastoData = {
         labels: ["2014", "2015", "2016", "2017", "2018"],
         datasets: [
@@ -93,6 +88,7 @@ $(function () {
             },
         ]
     };
+
     var gastoOptions = {
         scales: {
             yAxes: [{
@@ -122,6 +118,7 @@ $(function () {
         },
         maintainAspectRatio: false
     };
+
 
     var gastoFuncaoData = {
         labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
@@ -161,6 +158,7 @@ $(function () {
             }
         ]
     };
+
     var gastoFuncaoOptions = {
         scales: {
             yAxes: [{
@@ -196,6 +194,7 @@ $(function () {
         maintainAspectRatio: false
     };
 
+
     var PieData = {
         datasets: [{
             data: [3224, 2811, 2055, 1678, 1408],
@@ -215,6 +214,7 @@ $(function () {
             'PP'
         ]
     };
+
     var PieOptions = {
         responsive: true,
         animation: {
@@ -227,6 +227,7 @@ $(function () {
         },
         maintainAspectRatio: false
     };
+
 
     var areaData = {
         labels: ["Jan/15", "Fev/15", "Mar/15", "Abr/15", "Mai/15", "Jun/15", "Jul/15", "Ago/15", "Set/15", "Out/15", "Nov/15", "Dez/15",
@@ -280,6 +281,7 @@ $(function () {
         },
         maintainAspectRatio: false
     }
+
 
     var transpostoData = {
         labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
@@ -369,11 +371,12 @@ $(function () {
         maintainAspectRatio: false
     };
 
-    // Get context with jQuery - using jQuery's .get() method.
+
+    // Verifica a existancia dos canvas e aplica a API nos canvas selecionados
     if ($("#barChart").length) {
         var barChartCanvas = $("#barChart").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
+
+        new Chart(barChartCanvas, {
             type: 'bar',
             data: data,
             options: options
@@ -382,7 +385,8 @@ $(function () {
 
     if ($("#gastoChart").length) {
         var lineChartCanvas = $("#gastoChart").get(0).getContext("2d");
-        var lineChart = new Chart(lineChartCanvas, {
+
+        new Chart(lineChartCanvas, {
             type: 'bar',
             data: gastoData,
             options: gastoOptions
@@ -391,7 +395,8 @@ $(function () {
 
     if ($("#gastoFuncaoChart").length) {
         var lineChartCanvas = $("#gastoFuncaoChart").get(0).getContext("2d");
-        var lineChart = new Chart(lineChartCanvas, {
+
+        new Chart(lineChartCanvas, {
             type: 'bar',
             data: gastoFuncaoData,
             options: gastoFuncaoOptions
@@ -400,7 +405,8 @@ $(function () {
 
     if ($("#pieChart").length) {
         var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-        var pieChart = new Chart(pieChartCanvas, {
+
+        new Chart(pieChartCanvas, {
             type: 'pie',
             data: PieData,
             options: PieOptions
@@ -409,7 +415,8 @@ $(function () {
 
     if ($("#areaChart").length) {
         var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
-        var areaChart = new Chart(areaChartCanvas, {
+
+        new Chart(areaChartCanvas, {
             type: 'line',
             data: areaData,
             options: areaOptions
@@ -418,7 +425,8 @@ $(function () {
 
     if ($("#transpostoChart").length) {
         var areaChartCanvas = $("#transpostoChart").get(0).getContext("2d");
-        var areaChart = new Chart(areaChartCanvas, {
+
+        new Chart(areaChartCanvas, {
             type: 'line',
             data: transpostoData,
             options: transpostoOptions
