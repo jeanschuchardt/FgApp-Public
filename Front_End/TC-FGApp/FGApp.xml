@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FGApp</name>
+    </assembly>
+    <members>
+        <member name="M:FGApp.API.AnalisesController.GetServidoresFiliados(System.Int32)">
+            <summary>
+            Transforma uma altura em pés para o equivalente em metros
+            </summary>
+            <param name="ano">Altura em pés</param>
+            <returns>Objeto contendo a altura em pés e metros</returns>
+        </member>
+        <member name="M:FGApp.API.AnalisesController.GetTodosResultadosAnalise">
+            <summary>
+            Transforma uma altura em pés para o equivalente em metros
+            </summary>
+            <returns>Objeto contendo a altura em pés e metros</returns>
+        </member>
+        <member name="T:FGApp.Startup">
+            <Summary>
+             
+            </Summary>
+        </member>
+    </members>
+</doc>
