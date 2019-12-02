@@ -81,7 +81,7 @@ $(function () {
         datasets: [
             {
                 label: 'Total em R$',
-                data: [13826453355, 15132703247, 15945470761, 17486948219, 16621539654],
+                data: arrayGastosPorAno,
                 backgroundColor: 'rgba(255, 213, 0, 0.5)',
                 borderColor: 'rgba(255, 213, 0, 1)',
                 borderWidth: 1,
@@ -197,7 +197,7 @@ $(function () {
 
     var PieData = {
         datasets: [{
-            data: [3224, 2811, 2055, 1678, 1408],
+            data: arrayNumTopPartidos,
             backgroundColor: [
                 'rgba(170, 68, 255, 0.8)',
                 'rgba(153, 102, 255, 0.8)',
@@ -206,13 +206,7 @@ $(function () {
                 'rgba(180, 223, 255, 0.8)'
             ],
         }],
-        labels: [
-            'PT',
-            'PSDB',
-            'PMDB',
-            'PDT',
-            'PP'
-        ]
+        labels: arrayPartidos
     };
 
     var PieOptions = {
@@ -230,17 +224,11 @@ $(function () {
 
 
     var areaData = {
-        labels: ["Jan/15", "Fev/15", "Mar/15", "Abr/15", "Mai/15", "Jun/15", "Jul/15", "Ago/15", "Set/15", "Out/15", "Nov/15", "Dez/15",
-            "Jan/16", "Fev/16", "Mar/16", "Abr/16", "Mai/16", "Jun/16", "Jul/16", "Ago/16", "Set/16", "Out/16", "Nov/16", "Dez/16",
-            "Jan/17", "Fev/17", "Mar/17", "Abr/17", "Mai/17", "Jun/17", "Jul/17", "Ago/17", "Set/17", "Out/17", "Nov/17", "Dez/17",
-            "Jan/18", "Fev/18", "Mar/18", "Abr/18", "Mai/18", "Jun/18", "Jul/18", "Ago/18", "Set/18", "Out/18", "Nov/18", "Dez/18"],
+        labels: datasNumerosAnalises,
         datasets: [
             {
                 label: 'Relações',
-                data: [23823, 23745, 23814, 23810, 23699, 23495, 23348, 23168, 23144, 23024, 22930, 22874,
-                    22898, 22812, 22897, 22658, 22560, 22534, 22548, 22502, 22477, 22422, 22367, 22422,
-                    22909, 23566, 23430, 22948, 23772, 23436, 23479, 23511, 23430, 23439, 23371, 23491,
-                    22676, 22610, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
+                data: totalResultadosAnalisados,
                 backgroundColor: 'rgba(148, 194, 255, 0.5)',
                 borderColor: 'rgba(148, 194, 255, 1)',
                 borderWidth: 1,
@@ -288,7 +276,7 @@ $(function () {
         datasets: [
             {
                 label: "2015",
-                data: [23823, 23745, 23814, 23810, 23699, 23495, 23348, 23168, 23144, 23024, 22930, 22874],
+                data: totalResAnalisados2015,
                 backgroundColor: 'rgba(254, 112, 150, 0.4)',
                 borderColor: 'rgba(254, 112, 150, 1)',
                 borderWidth: 2,
@@ -300,7 +288,7 @@ $(function () {
             },
             {
                 label: "2016",
-                data: [22898, 22812, 22897, 22658, 22560, 22534, 22548, 22502, 22477, 22422, 22367, 22422,],
+                data: totalResAnalisados2016,
                 backgroundColor: 'rgba(4, 126, 223, 0.4)',
                 borderColor: 'rgba(4, 126, 223, 1)',
                 borderWidth: 2,
@@ -312,7 +300,7 @@ $(function () {
             },
             {
                 label: "2017",
-                data: [22909, 23566, 23430, 22948, 23772, 23436, 23479, 23511, 23430, 23439, 23371, 23491],
+                data: totalResAnalisados2017,
                 backgroundColor: 'rgba(7, 205, 174, 0.4)',
                 borderColor: 'rgba(7, 205, 174, 1)',
                 borderWidth: 2,
@@ -325,7 +313,7 @@ $(function () {
             {
 
                 label: "2018",
-                data: [22676, 22610, 22569, 22549, 22598, 22339, 22547, 22583, 22426, 22158, 22177, 22272],
+                data: totalResAnalisados2018,
                 backgroundColor: 'rgba(154, 85, 255, 0.4)',
                 borderColor: 'rgba(154, 85, 255, 1)',
                 borderWidth: 2,

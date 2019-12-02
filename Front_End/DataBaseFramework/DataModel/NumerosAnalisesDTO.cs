@@ -18,6 +18,27 @@ namespace DataBaseFramework.DataModel
         public decimal TotalServidores { get; set; }
         #endregion
 
+        public string AnoMesFormatado
+        {
+            get
+            {
+                string mesReduzido = this.MesFormatado.Substring(0, 3);
+                string anoReduzido = this.Ano.ToString().Substring(2, 2);
+
+                return mesReduzido + "/" + anoReduzido;
+            }
+        }
+
+        public string MesReduzido
+        {
+            get
+            {
+                string mesReduzido = this.MesFormatado.Substring(0, 3);
+
+                return mesReduzido;
+            }
+        }
+
         public string MesFormatado
         {
             get

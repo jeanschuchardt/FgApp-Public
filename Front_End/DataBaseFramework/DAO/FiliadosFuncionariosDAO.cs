@@ -214,6 +214,42 @@ namespace DataBaseFramework.DAO
             return list;
         }
 
+        public List<FiliadosFuncionariosDTO> GetTopPartidos()
+        {
+            List<FiliadosFuncionariosDTO> list = new List<FiliadosFuncionariosDTO>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT 
+                                            partido,
+                                            COUNT(id_portal) as quantidade
+                                        FROM resultados
+                                        WHERE ano = 2018 AND mes = 12 AND
+                                            (partido = 'PT' OR partido = 'PSDB' OR partido = 'PMDB' OR partido = 'PDT' OR partido = 'PP') 
+                                        GROUP BY partido
+                                        ORDER BY quantidade DESC; ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new FiliadosFuncionariosDTO()
+                        {
+                            Partido = reader.GetString("partido"),
+                            Quantidade = reader.GetInt32("quantidade")
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
         #region MetodosParaCamposDePesquisa
         public List<int> GetAllDataCargosDisponiveis()
         {

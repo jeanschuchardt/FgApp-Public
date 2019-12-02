@@ -88,6 +88,40 @@ namespace DataBaseFramework.DAO
             return list;
         }
 
+        public List<GastosTotaisDTO> GetGastosPorAno()
+        {
+            List<GastosTotaisDTO> list = new List<GastosTotaisDTO>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT 
+                                            ANO,
+                                            SUM(TOTAL_REMUNERACAO) AS TOTAL_REMUNERACAO
+                                        FROM gastostotais
+                                        WHERE ano > 2013 AND ano < 2019
+                                        GROUP BY ano ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new GastosTotaisDTO()
+                        {
+                            Ano = reader.GetInt32("ANO"),
+                            TotalRemuneracao = reader.GetDouble("TOTAL_REMUNERACAO")
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
         public List<int> GetAllDataGastosDisponiveis()
         {
             List<int> list = new List<int>();

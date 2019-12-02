@@ -49,7 +49,7 @@
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
-                    Estado Com mais Filiados
+                    Estado Com mais Filiados (12/2018)
                 </h4>
                 <h2 class="mb-5">São Paulo</h2>
                 <h6 class="card-text">3.314 Filiados</h6>
@@ -62,7 +62,7 @@
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
-                    Partido Com mais Filiados
+                    Partido Com mais Filiados (12/2018)
                 </h4>
                 <h2 class="mb-5">PT</h2>
                 <h6 class="card-text">3.224 Filiados</h6>
@@ -75,7 +75,7 @@
             <div class="card-body">
                 <img src="~/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
-                    Total Servidores Públicos
+                    Total Servidores Públicos (12/2018)
                 </h4>
                 <h2 class="mb-5">786.989</h2>
                 <h6 class="card-text">96.391 em Cargos Comissionados</h6>
@@ -168,7 +168,25 @@
 </div>
 <!-- content-wrapper ends -->
 
-<script type="text/javascript" src="~/js/chart.js?v=201911131606"></script>
+<script>
+    var datasNumerosAnalises = @Html.Raw(Model.arrayDatasAnalise);
+    var totalResultadosAnalisados = @Html.Raw(Model.arrayTotalResultadosAnalises);
+
+    var totalResAnalisados2015 = @Html.Raw(Model.arrayTotalResAnalises2015);
+    var totalResAnalisados2016 = @Html.Raw(Model.arrayTotalResAnalises2016);
+    var totalResAnalisados2017 = @Html.Raw(Model.arrayTotalResAnalises2017);
+    var totalResAnalisados2018 = @Html.Raw(Model.arrayTotalResAnalises2018);
+
+
+    var arrayPartidos = @Html.Raw(Model.arrayPartidos);
+    var arrayNumTopPartidos = @Html.Raw(Model.arrayNumTopPartidos);
+
+
+    var arrayGastosPorAno = @Html.Raw(Model.arrayGastosPorAno);
+
+</script>
+
+<script type="text/javascript" src="~/js/chart.js?v=201912012053"></script>
 <script type="text/javascript">
     $(function () {
         $(".my-popover").popover({ trigger: "hover" });

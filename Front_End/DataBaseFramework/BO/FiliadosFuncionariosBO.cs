@@ -38,6 +38,11 @@ namespace DataBaseFramework.BO
             return new FiliadosFuncionariosDAO(ConnectionString).GetAllFiliadosFuncionarios();
         }
 
+        public List<FiliadosFuncionariosDTO> GetTopPartidos()
+        {
+            return new FiliadosFuncionariosDAO(ConnectionString).GetTopPartidos();
+        }
+
         public List<int> GetAllDataCargosDisponiveis()
         {
             return new FiliadosFuncionariosDAO(ConnectionString).GetAllDataCargosDisponiveis();
