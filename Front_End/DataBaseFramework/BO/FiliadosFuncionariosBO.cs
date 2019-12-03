@@ -43,6 +43,11 @@ namespace DataBaseFramework.BO
             return new FiliadosFuncionariosDAO(ConnectionString).GetTopPartidos();
         }
 
+        public List<FiliadosFuncionariosDTO> GetEvolucaoPartidosPorAno(FiliadosFuncionariosDTO filiadosFuncionarios)
+        {
+            return new FiliadosFuncionariosDAO(ConnectionString).GetEvolucaoPartidosPorAno(filiadosFuncionarios);
+        }
+
         public List<int> GetAllDataCargosDisponiveis()
         {
             return new FiliadosFuncionariosDAO(ConnectionString).GetAllDataCargosDisponiveis();

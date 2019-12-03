@@ -223,5 +223,52 @@ namespace TC_FGApp.Controllers
 
             return View(gastosTotaisVM);
         }
+
+        [HttpGet]
+        public IActionResult EvolucaoPartidos()
+        {
+            EvolucaoPartidosVM evolucaoPartidosVM = new EvolucaoPartidosVM();
+
+            List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
+
+            evolucaoPartidosVM.selecaoAno = new SelectList(listaAnos);
+            evolucaoPartidosVM.anoSelecionado = 2015;
+
+            List<FiliadosFuncionariosDTO> listaEvolucaoPartidos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetEvolucaoPartidosPorAno(new FiliadosFuncionariosDTO() { Ano = 2015 });
+
+            List<OcupantesPartido> listOcupantesPartidos = new List<OcupantesPartido>();
+
+            foreach (FiliadosFuncionariosDTO ff in listaEvolucaoPartidos)
+            {
+                if (!listOcupantesPartidos.Any(x => x.partido.Equals(ff.Partido)))
+                {
+                    OcupantesPartido ocupantesPartidoAux = new OcupantesPartido();
+
+                    ocupantesPartidoAux.partido = ff.Partido;
+                    ocupantesPartidoAux.cor = Helper.ColorGenerator();
+                    ocupantesPartidoAux.arrayTotalOcupantes = JsonConvert.SerializeObject(listaEvolucaoPartidos.Where(x => x.Partido.Equals(ocupantesPartidoAux.partido)).Select(x => x.Quantidade));
+
+                    listOcupantesPartidos.Add(ocupantesPartidoAux);
+                }
+            }
+
+            evolucaoPartidosVM.arrayOcupantesPartidos = JsonConvert.SerializeObject(listaEvolucaoPartidos);
+
+            return View(evolucaoPartidosVM);
+        }
+
+        //[HttpPost]
+        //public IActionResult EvolucaoPartidos(EvolucaoPartidosVM evolucaoPartidosVM)
+        //{
+        //    List<int> listaAnos = new GastosTotaisBO(_connectionStrings.DefaultConnection).GetAllDataGastosDisponiveis();
+
+        //    evolucaoPartidosVM.selecaoAno = new SelectList(listaAnos);
+
+        //    List<FiliadosFuncionariosDTO> listaPartidosOcupantes = new GastosTotaisBO(_connectionStrings.DefaultConnection).GetRelacaoPorAno(new GastosTotaisDTO() { Ano = evolucaoPartidosVM.anoSelecionado });
+
+        //    evolucaoPartidosVM.arrayTotalGastos = JsonConvert.SerializeObject(listaGastos.Select(x => x.TotalRemuneracao));
+
+        //    return View(evolucaoPartidosVM);
+        //}
     }
 }

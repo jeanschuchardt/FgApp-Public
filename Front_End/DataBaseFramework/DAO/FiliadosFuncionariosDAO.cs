@@ -250,6 +250,43 @@ namespace DataBaseFramework.DAO
             return list;
         }
 
+        public List<FiliadosFuncionariosDTO> GetEvolucaoPartidosPorAno(FiliadosFuncionariosDTO filiadosFuncionarios)
+        {
+            List<FiliadosFuncionariosDTO> list = new List<FiliadosFuncionariosDTO>();
+
+            using (MySqlConnection conn = new DBContext(ConnectionString).GetConnection())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                stringBuilder.Append(@" SELECT 
+                                            partido,
+                                            COUNT(id_portal) as quantidade
+                                        FROM resultados
+                                        WHERE ano = @pAno
+                                        GROUP BY partido, mes
+                                        ORDER BY mes; ");
+
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
+
+                cmd.Parameters.AddWithValue("@pAno", filiadosFuncionarios.Ano);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new FiliadosFuncionariosDTO()
+                        {
+                            Partido = reader.GetString("partido"),
+                            Quantidade = reader.GetInt32("quantidade")
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
         #region MetodosParaCamposDePesquisa
         public List<int> GetAllDataCargosDisponiveis()
         {

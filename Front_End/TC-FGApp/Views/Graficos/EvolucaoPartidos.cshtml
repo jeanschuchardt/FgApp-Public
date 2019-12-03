@@ -1,0 +1,110 @@
+﻿@model FGApp.Models.EvolucaoPartidosVM
+
+@{
+    ViewData["Title"] = "Evolução Partidos";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+            <i class="mdi mdi-chart-areaspline"></i>
+        </span> Gastos Totais
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Evolução Partidos</li>
+        </ol>
+    </nav>
+</div>
+
+<form method="post" role="form">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Ano: </label>
+                <select asp-for="anoSelecionado" asp-items="Model.selecaoAno" class="form-control">
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" style="text-align: right;">
+                <input type="submit" value="Buscar" class="btn btn-gradient-primary btn-fw" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body card-grafico">
+                <canvas id="evolucaoPartidosChart" style="width: 100%; min-height: 370px; max-height: 580px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var listOcupantesPartidos = @Html.Raw(Model.arrayOcupantesPartidos)
+
+    var transpostoData = {
+        labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        datasets: [
+            {
+                label: "2015",
+                data: totalResAnalisados2015,
+                backgroundColor: 'rgba(254, 112, 150, 0.4)',
+                borderColor: 'rgba(254, 112, 150, 1)',
+                borderWidth: 2,
+                fill: false,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointHitRadius: 25,
+                pointBackgroundColor: 'rgba(254, 112, 150, 0.8)',
+            },
+        ]
+    };
+
+    var transpostoOptions = {
+        plugins: {
+            filler: {
+                propagate: true
+            }
+        },
+        legend: {
+            display: true,
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    userCallback: function (value, index, values) {
+                        return NumeroFormatado(value);
+                    }
+                }
+            }]
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, chart) {
+                    var label = tooltipItem.yLabel;
+                    return NumeroFormatado(label);
+                }
+            }
+        },
+        maintainAspectRatio: false
+    };
+
+    if ($("#evolucaoPartidosChart").length) {
+        var areaChartCanvas = $("#evolucaoPartidosChart").get(0).getContext("2d");
+
+        new Chart(areaChartCanvas, {
+            type: 'line',
+            data: transpostoData,
+            options: transpostoOptions
+        });
+    }
+</script>
