@@ -252,23 +252,39 @@ namespace TC_FGApp.Controllers
                 }
             }
 
-            evolucaoPartidosVM.arrayOcupantesPartidos = JsonConvert.SerializeObject(listaEvolucaoPartidos);
+            evolucaoPartidosVM.arrayOcupantesPartidos = JsonConvert.SerializeObject(listOcupantesPartidos);
 
             return View(evolucaoPartidosVM);
         }
 
-        //[HttpPost]
-        //public IActionResult EvolucaoPartidos(EvolucaoPartidosVM evolucaoPartidosVM)
-        //{
-        //    List<int> listaAnos = new GastosTotaisBO(_connectionStrings.DefaultConnection).GetAllDataGastosDisponiveis();
+        [HttpPost]
+        public IActionResult EvolucaoPartidos(EvolucaoPartidosVM evolucaoPartidosVM)
+        {
+            List<int> listaAnos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetAllDataCargosDisponiveis();
 
-        //    evolucaoPartidosVM.selecaoAno = new SelectList(listaAnos);
+            evolucaoPartidosVM.selecaoAno = new SelectList(listaAnos);
 
-        //    List<FiliadosFuncionariosDTO> listaPartidosOcupantes = new GastosTotaisBO(_connectionStrings.DefaultConnection).GetRelacaoPorAno(new GastosTotaisDTO() { Ano = evolucaoPartidosVM.anoSelecionado });
+            List<FiliadosFuncionariosDTO> listaEvolucaoPartidos = new FiliadosFuncionariosBO(_connectionStrings.DefaultConnection).GetEvolucaoPartidosPorAno(new FiliadosFuncionariosDTO() { Ano = evolucaoPartidosVM.anoSelecionado });
 
-        //    evolucaoPartidosVM.arrayTotalGastos = JsonConvert.SerializeObject(listaGastos.Select(x => x.TotalRemuneracao));
+            List<OcupantesPartido> listOcupantesPartidos = new List<OcupantesPartido>();
 
-        //    return View(evolucaoPartidosVM);
-        //}
+            foreach (FiliadosFuncionariosDTO ff in listaEvolucaoPartidos)
+            {
+                if (!listOcupantesPartidos.Any(x => x.partido.Equals(ff.Partido)))
+                {
+                    OcupantesPartido ocupantesPartidoAux = new OcupantesPartido();
+
+                    ocupantesPartidoAux.partido = ff.Partido;
+                    ocupantesPartidoAux.cor = Helper.ColorGenerator();
+                    ocupantesPartidoAux.arrayTotalOcupantes = JsonConvert.SerializeObject(listaEvolucaoPartidos.Where(x => x.Partido.Equals(ocupantesPartidoAux.partido)).Select(x => x.Quantidade));
+
+                    listOcupantesPartidos.Add(ocupantesPartidoAux);
+                }
+            }
+
+            evolucaoPartidosVM.arrayOcupantesPartidos = JsonConvert.SerializeObject(listOcupantesPartidos);
+
+            return View(evolucaoPartidosVM);
+        }
     }
 }

@@ -48,24 +48,27 @@
 </div>
 
 <script>
-    var listOcupantesPartidos = @Html.Raw(Model.arrayOcupantesPartidos)
+    var listOcupantesPartidos = @Html.Raw(Model.arrayOcupantesPartidos);
+    var listaDatasets = [];
+
+    $(listOcupantesPartidos).each(function(){
+	    listaDatasets.push({
+				    label: this.partido,
+                    data: JSON.parse(this.arrayTotalOcupantes),
+                    backgroundColor: this.cor,
+                    borderColor: this.cor,
+                    borderWidth: 2,
+                    fill: false,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointHitRadius: 25,
+                    pointBackgroundColor: this.cor
+	    });
+    });
 
     var transpostoData = {
         labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
-        datasets: [
-            {
-                label: "2015",
-                data: totalResAnalisados2015,
-                backgroundColor: 'rgba(254, 112, 150, 0.4)',
-                borderColor: 'rgba(254, 112, 150, 1)',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                pointHitRadius: 25,
-                pointBackgroundColor: 'rgba(254, 112, 150, 0.8)',
-            },
-        ]
+        datasets: listaDatasets
     };
 
     var transpostoOptions = {
@@ -91,7 +94,7 @@
             callbacks: {
                 label: function (tooltipItem, chart) {
                     var label = tooltipItem.yLabel;
-                    return NumeroFormatado(label);
+                    return chart.datasets[tooltipItem.datasetIndex].label + ': ' + NumeroFormatado(label);
                 }
             }
         },

@@ -262,7 +262,7 @@ namespace DataBaseFramework.DAO
                                             partido,
                                             COUNT(id_portal) as quantidade
                                         FROM resultados
-                                        WHERE ano = @pAno
+                                        WHERE ano = @pAno   
                                         GROUP BY partido, mes
                                         ORDER BY mes; ");
 
