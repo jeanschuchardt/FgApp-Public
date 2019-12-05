@@ -20,9 +20,9 @@ namespace FGApp.API
         }
 
         /// <summary>
-        /// Transforma uma altura em pés para o equivalente em metros
+        /// 
         /// </summary>
-        /// <param name="ano">Altura em pés</param>
+        /// <param name="ano"></param>
         /// <returns>Objeto contendo a altura em pés e metros</returns>
         [HttpGet("{ano}")]
         public JsonResult GetServidoresFiliados(int ano)
@@ -39,10 +39,6 @@ namespace FGApp.API
             }
         }
 
-        /// <summary>
-        /// Transforma uma altura em pés para o equivalente em metros
-        /// </summary>
-        /// <returns>Objeto contendo a altura em pés e metros</returns>
         [HttpGet]
         public JsonResult GetTodosResultadosAnalise()
         {
