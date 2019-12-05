@@ -63,7 +63,7 @@ namespace DataBaseFramework.DAO
 
                 stringBuilder.Append(@" SELECT 
 	                                        uf, 
-	                                        COUNT(id_portal) AS quantidade
+	                                        COUNT(id_portal)/12 AS quantidade
                                         FROM resultados
                                         WHERE ano = @pAno
                                         GROUP BY uf ");
@@ -144,8 +144,8 @@ namespace DataBaseFramework.DAO
 	                                    FROM resultados 
 	                                    WHERE uf = @pUf
 	                                    AND sigla = @pSigla
-	                                    GROUP BY mes, ano 
-	                                    ORDER BY ano ");
+	                                    GROUP BY ano, mes 
+	                                    ORDER BY ano, mes ");
 
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
@@ -160,6 +160,7 @@ namespace DataBaseFramework.DAO
                         list.Add(new FiliadosFuncionariosDTO()
                         {
                             Ano = reader.GetInt32("ano"),
+                            Mes = reader.GetInt32("mes"),
                             Sigla = reader.GetString("sigla"),
                             Quantidade = reader.GetInt32("quantidade")
                         });
@@ -323,7 +324,9 @@ namespace DataBaseFramework.DAO
             {
                 StringBuilder stringBuilder = new StringBuilder();
 
-                stringBuilder.Append(@" SELECT DISTINCT(uf) FROM resultados ");
+                stringBuilder.Append(@" SELECT DISTINCT(uf) 
+                                        FROM resultados 
+                                        ORDER BY uf ");
 
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
@@ -348,7 +351,9 @@ namespace DataBaseFramework.DAO
             {
                 StringBuilder stringBuilder = new StringBuilder();
 
-                stringBuilder.Append(@" SELECT DISTINCT(sigla), func FROM resultados ");
+                stringBuilder.Append(@" SELECT DISTINCT(sigla) 
+                                        FROM resultados
+                                        ORDER BY sigla ");
 
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(stringBuilder.ToString(), conn);
