@@ -1,0 +1,38 @@
+files_root:
+    serv_path: ../readtoinsert
+    dst_serv_path: D:\Github\raw_data\Serv_done
+database:
+    str_conn: mysql://root:example@localhost:3308/datastage
+
+downloads:
+    anos:
+      #- 2014
+      #- 2015
+      #- 2016
+      #- 2017
+      #- 2018
+      - 2019
+    meses:
+      - 1
+      - 2 
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+
+url:
+  tse: http://www.portaltransparencia.gov.br/download-de-dados/servidores/
+
+
+folders:
+    f_zip: downloads
+    f_unzip: data/unziped_files
+    f_inserted: data/inserted_files
+    f_zip_backup: data/ziped_files_backup
+

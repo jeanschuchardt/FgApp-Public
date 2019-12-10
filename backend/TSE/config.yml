@@ -1,4 +1,0 @@
-files_root:
-    tse_path: D:\Github\raw_data\Unziper
-database:
-    str_conn: mysql://root:example@localhost:3308/datastage
